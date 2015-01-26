@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="dwolla.net.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="client_id" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="client_secret" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="pin" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="oauth_scope" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Send|Transactions|Balance|Request|Contacts|AccountInfoFull|Funding|ManageAccount</Value>
+    </Setting>
+    <Setting Name="production_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.dwolla.com/</Value>
+    </Setting>
+    <Setting Name="sandbox_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://uat.dwolla.com/</Value>
+    </Setting>
+    <Setting Name="default_postfix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">oauth/rest</Value>
+    </Setting>
+    <Setting Name="sandbox" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="debug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="rest_timeout" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="proxy" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
