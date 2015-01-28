@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dwolla.net.Serializer
+namespace dwolla.net.SerializableTypes
 {
     /// <summary>
     /// LINQ-serializable structure for the "Dwolla envelope".
