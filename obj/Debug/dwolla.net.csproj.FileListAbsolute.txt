@@ -1,6 +1,6 @@
 C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.net.csprojResolveAssemblyReference.cache
-C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.net.dll.config
-C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.net.dll
-C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.net.pdb
-C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.net.dll
-C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.net.pdb
+C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.dll.config
+C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.dll
+C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.pdb
+C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.dll
+C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.pdb

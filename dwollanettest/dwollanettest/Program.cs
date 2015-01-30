@@ -11,10 +11,9 @@ namespace dwollanettest
     {
         static void Main(string[] args)
         {
-            Dictionary<string, string> doodles = new Dictionary<string, string>(){
-            {"client_id", "abcd"}, {"client_secret", "dongs"}};
-            var client = new dwolla.net.Rest();
-            Console.WriteLine(client.get("/contacts", doodles).Result);
+            var bullshit = new dwolla.Contacts();
+            var result = bullshit.get();
+            Console.WriteLine(result);
             Console.ReadLine();
         }
     }

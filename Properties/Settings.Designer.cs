@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dwolla.net.Properties {
+namespace dwolla.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -152,6 +152,18 @@ namespace dwolla.net.Properties {
             }
             set {
                 this["proxy"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string access_token {
+            get {
+                return ((string)(this["access_token"]));
+            }
+            set {
+                this["access_token"] = value;
             }
         }
     }

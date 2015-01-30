@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="dwolla.net.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="dwolla.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="client_id" Type="System.String" Scope="User">
@@ -33,6 +33,9 @@
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="proxy" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="access_token" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
