@@ -9,6 +9,8 @@ using System.Web;
 using System.IO;
 using System.Web.Script.Serialization;
 
+using dwolla.SerializableTypes;
+
 namespace dwolla
 {
     public class Rest
@@ -19,12 +21,33 @@ namespace dwolla
         public JavaScriptSerializer jss = new JavaScriptSerializer();
 
         /// <summary>
+        /// Uses the generic Dwolla response envelope to check for 
+        /// API errors before returning data to endpoint functions.
+        /// </summary>
+        /// <param name="response">C# task response, raw JSON string.</param>
+        /// <returns>JSON string parsed out of Dwolla envelope</returns>
+        public string DwollaParse(Task<string> response)
+        {
+            // TODO: necessary?
+            if (response == null) return null;
+
+            /*
+             * This is important because even though we are only receiving
+             * ONE SINGULAR Dwolla response, the deserializer should NOT
+             * assume that just because one object is returned that many cannot 
+             * exist, so it MUST be a List. 
+             */
+            var r = jss.Deserialize<List<DwollaResponse>>(response.Result);
+            if (r[0].Success) return r[0].Response;
+            else throw new dwolla.APIException(r[0].Message);
+        }
+
+        /// <summary>
         /// Asynchronous POST request wrapper around HttpClient
         /// </summary>
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
-        /// <returns></returns>
-
+        /// <returns>C# task response, raw JSON string.</returns>
         public async Task<string> post(string endpoint, Dictionary<string, string> parameters)
         {
             using (HttpClient client = new HttpClient())
@@ -52,7 +75,7 @@ namespace dwolla
         /// </summary>
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
-        /// <returns></returns>
+        /// <returns>C# task response, raw JSON string.</returns>
         public async Task<string> get(string endpoint, Dictionary<string, string> parameters)
         {
             using (HttpClient client = new HttpClient())

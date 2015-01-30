@@ -1,4 +1,3 @@
-C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.net.csprojResolveAssemblyReference.cache
 C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.dll.config
 C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.dll
 C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.pdb

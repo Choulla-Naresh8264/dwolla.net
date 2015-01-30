@@ -24,8 +24,7 @@ namespace dwolla
             };
 
             if (aparams != null) data = aparams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-
-            return jss.Deserialize<List<Contact>>(get("/contacts", data).Result);
+            return jss.Deserialize<List<Contact>>(DwollaParse(get("/contacts", data)));
         }
     }
 }
