@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace dwolla
+namespace Dwolla
 {
     /// <summary>
     /// Custom exception class for invalid API responses.
     /// </summary>
-    public class APIException : ApplicationException
+    [Serializable]
+    public class ApiException : ApplicationException
     {
-        public APIException() { }
-        public APIException(string message) { }
-        protected APIException(SerializationInfo info, StreamingContext context) { }
+        public ApiException() { }
+        public ApiException(string message) { }
+        protected ApiException(SerializationInfo info, StreamingContext context) { }
     }
 }

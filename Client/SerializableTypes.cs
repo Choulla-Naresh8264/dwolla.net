@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-/// <summary>
-/// This namespace contains LINQ-serializable types for different
-/// response types from the Dwolla API.
-/// </summary>
-namespace dwolla.SerializableTypes
+// This namespace contains WCF-serializable types for
+// different Dwolla responses. 
+namespace Dwolla.SerializableTypes
 {
     public class DwollaResponse<T>
     {
@@ -84,16 +78,6 @@ namespace dwolla.SerializableTypes
         public string Name { get; set; }
         public string State { get; set; }
         public string Type { get; set; }
-    }
-
-    public class UserNearby
-    {
-        public string Id { get; set; }
-        public Uri Image { get; set; }
-        public string Name { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public double Delta { get; set; }
     }
 
     public class AutoWithdrawalStatus

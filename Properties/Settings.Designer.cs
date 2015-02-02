@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace dwolla.Properties {
+namespace Dwolla.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

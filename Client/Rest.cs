@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Net;
 using System.Net.Http;
 using System.Web;
-using System.IO;
 using System.Web.Script.Serialization;
 
-using dwolla.SerializableTypes;
+using Dwolla.SerializableTypes;
 
-namespace dwolla
+namespace Dwolla
 {
     public class Rest
     {
         /// <summary>
         /// WCF serializer
         /// </summary>
-        public JavaScriptSerializer jss = new JavaScriptSerializer();
+        public JavaScriptSerializer Jss = new JavaScriptSerializer();
 
         /// <summary>
         /// Fully parses result out of Dwolla envelope into easily 
@@ -32,9 +28,9 @@ namespace dwolla
         public T DwollaParse<T>(Task<string> response)
         {
             Console.WriteLine(response.Result);
-            var r = jss.Deserialize<DwollaResponse<T>>(response.Result);
+            var r = Jss.Deserialize<DwollaResponse<T>>(response.Result);
             if (r.Success) return r.Response;
-            else throw new dwolla.APIException(r.Message);
+            else throw new Dwolla.ApiException(r.Message);
         }
 
         /// <summary>

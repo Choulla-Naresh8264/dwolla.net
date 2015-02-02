@@ -1,50 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Dwolla.Properties;
+using Dwolla.SerializableTypes;
 
-using dwolla.SerializableTypes;
-
-namespace dwolla
+namespace Dwolla
 {
     public class Contacts : Rest
     {
         /// <summary>
-        /// Gets contacts from user associated with OAuth token
+        ///     Gets contacts from user associated with OAuth token
         /// </summary>
-        /// <param name="aparams">Dictionary with additional parameters</param>
-        /// <param name="alt_token">Alternate OAuth token</param>
+        /// <param name="aParams">Dictionary with additional parameters</param>
+        /// <param name="altToken">Alternate OAuth token</param>
         /// <returns>List of Contacts</returns>
-        public List<Contact> get(Dictionary<string, string> aparams = null, string alt_token = null)
+        public List<Contact> Get(Dictionary<string, string> aParams = null, string altToken = null)
         {
-            Dictionary<string, string> data = new Dictionary<string, string>()
+            var data = new Dictionary<string, string>
             {
-                { "oauth_token", alt_token == null ? Properties.Settings.Default.access_token : alt_token }
+                {"oauth_token", altToken ?? Settings.Default.access_token}
             };
 
-            if (aparams != null) data = aparams.Union(data).ToDictionary(k => k.Key, v => v.Value);
+            if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
             return DwollaParse<List<Contact>>(get("/contacts", data));
         }
 
         /// <summary>
-        /// Returns Dwolla spots near the specified geographical location
+        ///     Returns Dwolla spots near the specified geographical location
         /// </summary>
         /// <param name="lat">Latitudinal coordinates</param>
         /// <param name="lon">Longitudinal coordinates</param>
-        /// <param name="aparams">Dictionary with additional parameters</param>
+        /// <param name="aParams">Dictionary with additional parameters</param>
         /// <returns>List of UserNearby</returns>
-        public List<UserNearby> nearby(double lat, double lon, Dictionary<string, string> aparams = null)
+        public List<UserNearby> Nearby(double lat, double lon, Dictionary<string, string> aParams = null)
         {
-            Dictionary<string, string> data = new Dictionary<string, string>()
+            var data = new Dictionary<string, string>
             {
-                { "client_id", Properties.Settings.Default.client_id },
-                { "client_secret", Properties.Settings.Default.client_secret },
-                { "latitude", lat.ToString() },
-                { "longitude", lon.ToString() }
+                {"client_id", Settings.Default.client_id},
+                {"client_secret", Settings.Default.client_secret},
+                {"latitude", lat.ToString()},
+                {"longitude", lon.ToString()}
             };
 
-            if (aparams != null) data = aparams.Union(data).ToDictionary(k => k.Key, v => v.Value);
+            if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
             return DwollaParse<List<UserNearby>>(get("/contacts/nearby", data));
         }
     }
