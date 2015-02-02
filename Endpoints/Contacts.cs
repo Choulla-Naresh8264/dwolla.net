@@ -15,7 +15,7 @@ namespace dwolla
         /// </summary>
         /// <param name="aparams">Dictionary with additional parameters</param>
         /// <param name="alt_token">Alternate OAuth token</param>
-        /// <returns></returns>
+        /// <returns>List of Contacts</returns>
         public List<Contact> get(Dictionary<string, string> aparams = null, string alt_token = null)
         {
             Dictionary<string, string> data = new Dictionary<string, string>()
@@ -25,6 +25,27 @@ namespace dwolla
 
             if (aparams != null) data = aparams.Union(data).ToDictionary(k => k.Key, v => v.Value);
             return DwollaParse<List<Contact>>(get("/contacts", data));
+        }
+
+        /// <summary>
+        /// Returns Dwolla spots near the specified geographical location
+        /// </summary>
+        /// <param name="lat">Latitudinal coordinates</param>
+        /// <param name="lon">Longitudinal coordinates</param>
+        /// <param name="aparams">Dictionary with additional parameters</param>
+        /// <returns>List of UserNearby</returns>
+        public List<UserNearby> nearby(double lat, double lon, Dictionary<string, string> aparams = null)
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>()
+            {
+                { "client_id", Properties.Settings.Default.client_id },
+                { "client_secret", Properties.Settings.Default.client_secret },
+                { "latitude", lat.ToString() },
+                { "longitude", lon.ToString() }
+            };
+
+            if (aparams != null) data = aparams.Union(data).ToDictionary(k => k.Key, v => v.Value);
+            return DwollaParse<List<UserNearby>>(get("/contacts/nearby", data));
         }
     }
 }
