@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 /// </summary>
 namespace dwolla.SerializableTypes
 {
-    public class DwollaResponse
+    public class DwollaResponse<T>
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public string Response { get; set; }
+        public T Response { get; set; }
     }
 
     public class MassPayJob

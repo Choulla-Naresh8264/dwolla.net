@@ -21,25 +21,20 @@ namespace dwolla
         public JavaScriptSerializer jss = new JavaScriptSerializer();
 
         /// <summary>
-        /// Uses the generic Dwolla response envelope to check for 
-        /// API errors before returning data to endpoint functions.
+        /// Fully parses result out of Dwolla envelope into easily 
+        /// usable serializable type. Verifies response and raises 
+        /// error if API exception encountered. 
         /// </summary>
-        /// <param name="response">C# task response, raw JSON string.</param>
-        /// <returns>JSON string parsed out of Dwolla envelope</returns>
-        public string DwollaParse(Task<string> response)
+        /// <typeparam name="T">Type of serializable data</typeparam>
+        /// <param name="response">JSON response string</param>
+        /// <returns>Can either be a single object or a serializable
+        /// type as a part of a collection</returns>
+        public T DwollaParse<T>(Task<string> response)
         {
-            // TODO: necessary?
-            if (response == null) return null;
-
-            /*
-             * This is important because even though we are only receiving
-             * ONE SINGULAR Dwolla response, the deserializer should NOT
-             * assume that just because one object is returned that many cannot 
-             * exist, so it MUST be a List. 
-             */
-            var r = jss.Deserialize<List<DwollaResponse>>(response.Result);
-            if (r[0].Success) return r[0].Response;
-            else throw new dwolla.APIException(r[0].Message);
+            Console.WriteLine(response.Result);
+            var r = jss.Deserialize<DwollaResponse<T>>(response.Result);
+            if (r.Success) return r.Response;
+            else throw new dwolla.APIException(r.Message);
         }
 
         /// <summary>

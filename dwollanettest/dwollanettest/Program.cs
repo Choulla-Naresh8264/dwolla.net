@@ -11,9 +11,9 @@ namespace dwollanettest
     {
         static void Main(string[] args)
         {
-            dwolla.Properties.Settings.Default.access_token = "Mmxr4BAsDduy7FiA43hM1wjArJe8JWnOljwYXmNmApl+reG38r";
-            var bullshit = new dwolla.Contacts();
-            var result = bullshit.get();
+            dwolla.Properties.Settings.Default.access_token = "snip";
+            var c = new dwolla.Contacts();
+            var result = c.get();
             Console.WriteLine(result);
             Console.ReadLine();
         }
