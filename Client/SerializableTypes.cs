@@ -66,4 +66,39 @@ namespace dwolla.SerializableTypes
         public double Longitude { get; set; }
         public double Delta { get; set; }
     }
+
+    public class UserBasic
+    {
+        public string Id { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class UserFull
+    {
+        public string City { get; set; }
+        public string Id { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string Name { get; set; }
+        public string State { get; set; }
+        public string Type { get; set; }
+    }
+
+    public class UserNearby
+    {
+        public string Id { get; set; }
+        public Uri Image { get; set; }
+        public string Name { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Delta { get; set; }
+    }
+
+    public class AutoWithdrawalStatus
+    {
+        public bool Enabled { get; set; }
+        public string FundingId { get; set; }
+    }
 }
