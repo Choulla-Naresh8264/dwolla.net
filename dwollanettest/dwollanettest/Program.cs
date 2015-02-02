@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using dwolla;
+using Dwolla;
 
 namespace dwollanettest
 {
@@ -11,9 +11,9 @@ namespace dwollanettest
     {
         static void Main(string[] args)
         {
-            dwolla.Properties.Settings.Default.access_token = "snip";
-            var c = new dwolla.Contacts();
-            var result = c.get();
+            Dwolla.Properties.Settings.Default.access_token = "snip";
+            var c = new Dwolla.Contacts();
+            var result = c.Get();
             Console.WriteLine(result);
             Console.ReadLine();
         }
