@@ -20,7 +20,7 @@ namespace Dwolla
         ///     An instance of the configuration class, which wraps around
         ///     ConfigurationManager
         /// </summary>
-        public Config C;
+        public Config C = new Config();
 
         /// <summary>
         ///     WCF serializer

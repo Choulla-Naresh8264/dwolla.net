@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dwolla;
+using Dwolla.SerializableTypes;
 
 namespace dwollanettest
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Dwolla.Properties.Settings.Default.access_token = "snip";
-            var c = new Dwolla.Contacts();
-            var result = c.Get();
+            var c = new Contacts();
+            c.C.access_token = "OLJVhTXgrbRjnS546gWtgNyFXjkQoP21Jp3wP7wY1hCJzbJZmG";
+            List<Contact> result = c.Get();
             Console.WriteLine(result);
             Console.ReadLine();
         }
