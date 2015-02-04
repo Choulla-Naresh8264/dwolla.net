@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Dwolla.Properties;
 using Dwolla.SerializableTypes;
 
 namespace Dwolla
@@ -13,11 +12,11 @@ namespace Dwolla
         /// <returns>UserBasic object</returns>
         public UserBasic Basic(string accountId)
         {
-            return DwollaParse<UserBasic>(get("/users/" + accountId,
+            return DwollaParse<UserBasic>(Get("/users/" + accountId,
                 new Dictionary<string, string>
                 {
-                    {"client_id", Settings.Default.client_id},
-                    {"client_secret", Settings.Default.client_secret},
+                    {"client_id", C.client_id},
+                    {"client_secret", C.client_secret},
                 }));
         }
 
@@ -29,10 +28,10 @@ namespace Dwolla
         /// <returns>UserFull object</returns>
         public UserFull Full(string altToken = null)
         {
-            return DwollaParse<UserFull>(get("/users",
+            return DwollaParse<UserFull>(Get("/users",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? Settings.Default.access_token}
+                    {"oauth_token", altToken ?? C.access_token}
                 }));
         }
 
@@ -44,10 +43,10 @@ namespace Dwolla
         /// <returns>Balance as double</returns>
         public double Balance(string altToken = null)
         {
-            return DwollaParse<double>(get("/balance",
+            return DwollaParse<double>(Get("/balance",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? Settings.Default.access_token}
+                    {"oauth_token", altToken ?? C.access_token}
                 }));
         }
 
@@ -59,10 +58,10 @@ namespace Dwolla
         /// <returns>UserNearby object</returns>
         public UserNearby Nearby(double lat, double lon)
         {
-            return DwollaParse<UserNearby>(get("/users/nearby", new Dictionary<string, string>
+            return DwollaParse<UserNearby>(Get("/users/nearby", new Dictionary<string, string>
             {
-                {"client_id", Settings.Default.client_id},
-                {"client_secret", Settings.Default.client_secret},
+                {"client_id", C.client_id},
+                {"client_secret", C.client_secret},
                 {"latitude", lat.ToString()},
                 {"longitude", lon.ToString()}
             }));
@@ -76,10 +75,10 @@ namespace Dwolla
         /// <returns>AutoWithdrawalStatus object</returns>
         public AutoWithdrawalStatus GetAutoWithdrawalStatus(string altToken = null)
         {
-            return DwollaParse<AutoWithdrawalStatus>(get("/accounts/features/auto_withdrawl",
+            return DwollaParse<AutoWithdrawalStatus>(Get("/accounts/features/auto_withdrawl",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? Settings.Default.access_token}
+                    {"oauth_token", altToken ?? C.access_token}
                 }));
         }
 
@@ -94,10 +93,10 @@ namespace Dwolla
         /// <returns></returns>
         public bool ToggleAutoWithdrawalStatus(bool status, string fundingId, string altToken = null)
         {
-            var r = DwollaParse<string>(post("/accounts/features/auto_withdrawl",
+            var r = DwollaParse<string>(Post("/accounts/features/auto_withdrawl",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? Settings.Default.access_token}
+                    {"oauth_token", altToken ?? C.access_token}
                 }));
 
             // I figure this will be more useful than the string

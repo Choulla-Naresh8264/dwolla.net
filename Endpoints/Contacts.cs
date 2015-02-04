@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Dwolla.Properties;
 using Dwolla.SerializableTypes;
 
 namespace Dwolla
@@ -17,11 +16,11 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? Settings.Default.access_token}
+                {"oauth_token", altToken ?? C.access_token}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<List<Contact>>(get("/contacts", data));
+            return DwollaParse<List<Contact>>(Get("/contacts", data));
         }
 
         /// <summary>
@@ -35,14 +34,14 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"client_id", Settings.Default.client_id},
-                {"client_secret", Settings.Default.client_secret},
+                {"client_id", C.client_id},
+                {"client_secret", C.client_secret},
                 {"latitude", lat.ToString()},
                 {"longitude", lon.ToString()}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<List<UserNearby>>(get("/contacts/nearby", data));
+            return DwollaParse<List<UserNearby>>(Get("/contacts/nearby", data));
         }
     }
 }
