@@ -33,13 +33,14 @@ namespace Dwolla
         /// </summary>
         /// <typeparam name="T">Type of serializable data</typeparam>
         /// <param name="response">JSON response string</param>
+        /// <param name="noEnvelope">Some endpoints have no Dwolla "envelope"</param>
         /// <returns>
         ///     Can either be a single object or a serializable
         ///     type as a part of a collection
         /// </returns>
-        protected T DwollaParse<T>(Task<string> response)
+        protected T DwollaParse<T>(Task<string> response, bool noEnvelope=false)
         {
-            Console.WriteLine(response.Result);
+            if (noEnvelope) return Jss.Deserialize<T>(response.Result);
             var r = Jss.Deserialize<DwollaResponse<T>>(response.Result);
             if (r.Success) return r.Response;
             throw new ApiException(r.Message);
@@ -50,8 +51,9 @@ namespace Dwolla
         /// </summary>
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
+        /// <param name="altPostfix">Alternate REST postfix</param>
         /// <returns>C# task response, raw JSON string.</returns>
-        protected async Task<string> Post(string endpoint, Dictionary<string, string> parameters)
+        protected async Task<string> Post(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {
@@ -60,7 +62,7 @@ namespace Dwolla
                 {
                     HttpResponseMessage request = await client.PostAsync(
                         (C.sandbox ? C.sandbox_host : C.production_host)
-                        + C.default_postfix + endpoint, data);
+                        + (altPostfix ?? C.default_postfix) + endpoint, data);
                     return await request.Content.ReadAsStringAsync();
                 }
                 catch (Exception wtf)
@@ -77,14 +79,15 @@ namespace Dwolla
         /// </summary>
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
+        /// <param name="altPostfix">Alternate REST postfix</param>
         /// <returns>C# task response, raw JSON string.</returns>
-        protected async Task<string> Get(string endpoint, Dictionary<string, string> parameters)
+        protected async Task<string> Get(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {
                 var builder = new UriBuilder(
                     (C.sandbox ? C.sandbox_host : C.production_host)
-                    + C.default_postfix + endpoint);
+                    + (altPostfix ?? C.default_postfix) + endpoint);
 
                 NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
 
