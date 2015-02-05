@@ -12,7 +12,6 @@ namespace Dwolla
 {
     /// <summary>
     ///     Handles POST and GET requests, as well as serialization
-    ///     Handles POST and GET requests, as well as serialization
     /// </summary>
     public class Rest
     {

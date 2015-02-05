@@ -2,6 +2,8 @@
 
 // This namespace contains WCF-serializable types for
 // different Dwolla responses. 
+using System.Collections.Generic;
+
 namespace Dwolla.SerializableTypes
 {
     public class DwollaResponse<T>
@@ -84,5 +86,44 @@ namespace Dwolla.SerializableTypes
     {
         public bool Enabled { get; set; }
         public string FundingId { get; set; }
+    }
+
+    public class RequestUser
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public Uri Image { get; set; }
+    }
+
+    public class Request
+    {
+        public string Id { get; set; }
+        public RequestUser Source { get; set; }
+        public RequestUser Destination { get; set; }
+        public double Amount { get; set; }
+        public string Notes { get; set; }
+        public string DateRequested { get; set; }
+        public string Status { get; set; }
+        public string Transaction { get; set; }
+        public RequestUser CancelledBy { get; set; }
+        public string DateCancelled { get; set; }
+        public bool SenderAssumeFee { get; set; }
+        public bool SenderAssumeAdditionalFee { get; set; }
+        public Dictionary<string, string> AdditionalFees { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
+ 
+    }
+
+    public class RequestFulfilled
+    {
+        public string Id { get; set; }
+        public int RequestId { get; set; }
+        public double Amount { get; set; }
+        public string SentDate { get; set; }
+        public string ClearingDate { get; set; }
+        public string Status { get; set; }
+        public RequestUser Source { get; set; }
+        public RequestUser Destination { get; set; }
     }
 }
