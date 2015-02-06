@@ -44,6 +44,8 @@
     <Compile Include="Client\Rest.cs" />
     <Compile Include="Endpoints\Accounts.cs" />
     <Compile Include="Endpoints\Contacts.cs" />
+    <Compile Include="Endpoints\FundingSources.cs" />
+    <Compile Include="Endpoints\OAuth.cs" />
     <Compile Include="Endpoints\Requests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

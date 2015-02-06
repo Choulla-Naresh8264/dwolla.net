@@ -82,12 +82,12 @@ namespace Dwolla
         /// <param name="altPin">Alternate PIN</param>
         /// <returns></returns>
         public RequestFulfilled Fulfill(string requestId, double amount, Dictionary<string, string> aParams = null,
-            string altToken = null, string altPin = null)
+            string altToken = null, int? altPin = null)
         {
             var data = new Dictionary<string, string>
             {
                 {"oauth_token", altToken ?? C.access_token},
-                {"pin", altPin ?? C.pin.ToString()},
+                {"pin", altPin.ToString() ?? C.pin.ToString()},
                 {"amount", amount.ToString()}
             };
 

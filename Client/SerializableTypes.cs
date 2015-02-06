@@ -39,7 +39,7 @@ namespace Dwolla.SerializableTypes
         public string Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public string Verified { get; set; }
+        public bool Verified { get; set; }
         public string ProcessingType { get; set; }
     }
 
@@ -88,7 +88,7 @@ namespace Dwolla.SerializableTypes
         public string FundingId { get; set; }
     }
 
-    public class RequestUser
+    public class User
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -99,20 +99,20 @@ namespace Dwolla.SerializableTypes
     public class Request
     {
         public string Id { get; set; }
-        public RequestUser Source { get; set; }
-        public RequestUser Destination { get; set; }
+        public User Source { get; set; }
+        public User Destination { get; set; }
         public double Amount { get; set; }
         public string Notes { get; set; }
         public string DateRequested { get; set; }
         public string Status { get; set; }
         public string Transaction { get; set; }
-        public RequestUser CancelledBy { get; set; }
+        public User CancelledBy { get; set; }
         public string DateCancelled { get; set; }
         public bool SenderAssumeFee { get; set; }
         public bool SenderAssumeAdditionalFee { get; set; }
         public Dictionary<string, string> AdditionalFees { get; set; }
         public Dictionary<string, string> Metadata { get; set; }
- 
+
     }
 
     public class RequestFulfilled
@@ -123,8 +123,8 @@ namespace Dwolla.SerializableTypes
         public string SentDate { get; set; }
         public string ClearingDate { get; set; }
         public string Status { get; set; }
-        public RequestUser Source { get; set; }
-        public RequestUser Destination { get; set; }
+        public User Source { get; set; }
+        public User Destination { get; set; }
     }
 
     public class OAuthResponse
@@ -134,5 +134,26 @@ namespace Dwolla.SerializableTypes
         public string refresh_token { get; set; }
         public int refresh_expires_in { get; set; }
         public string token_type { get; set; }
+    }
+
+    public class Transaction
+    {
+        public string Id { get; set; }
+        public double Amount { get; set; }
+        public string Date { get; set; }
+        public string Type { get; set; }
+        public string UserType { get; set; }
+        public string DestinationId { get; set; }
+        public string DestinationName { get; set; }
+        public User Destination { get; set; }
+        public string SourceId { get; set; }
+        public string SourceName { get; set; }
+        public User Source { get; set; }
+        public string ClearingDate { get; set; }
+        public string Status { get; set; }
+        public string Notes { get; set; }
+        public Dictionary<string, string> Fees { get; set; }
+        public string OriginalTransactionId { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
     }
 }
