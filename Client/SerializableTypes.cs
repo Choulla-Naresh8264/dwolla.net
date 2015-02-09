@@ -13,6 +13,11 @@ namespace Dwolla.SerializableTypes
         public T Response { get; set; }
     }
 
+    public class MassPayCreate
+    {
+        
+    }
+
     public class MassPayJob
     {
         public string Id { get; set; }
@@ -25,6 +30,15 @@ namespace Dwolla.SerializableTypes
         public string CreatedDate { get; set; }
         public string Status { get; set; }
         public MassPayItemSummary ItemSummary { get; set; }
+    }
+
+    public class MassPayItem
+    {
+        public double amount { get; set; }
+        public string destination { get; set; }
+        public string destinationType { get; set; }
+        public string notes { get; set; }
+        public Dictionary<string, string> metadata { get; set; }
     }
 
     public class MassPayItemSummary
