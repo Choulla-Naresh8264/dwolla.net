@@ -100,7 +100,7 @@ namespace Dwolla
                 }));
 
             // I figure this will be more useful than the string
-            return r == "Enabled" ? true : false;
+            return r == "Enabled";
         }
     }
 }

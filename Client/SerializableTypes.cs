@@ -156,4 +156,17 @@ namespace Dwolla.SerializableTypes
         public string OriginalTransactionId { get; set; }
         public Dictionary<string, string> Metadata { get; set; }
     }
+
+    public class Refund
+    {
+        public int TransactionId { get; set; }
+        public string RefundDate { get; set; }
+        public double Amount { get; set; }
+    }
+
+    public class TransactionStats
+    {
+        public int TransactionsCount { get; set; }
+        public double TransactionsTotal { get; set; }
+    }
 }
