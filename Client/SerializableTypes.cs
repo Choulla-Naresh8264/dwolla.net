@@ -13,11 +13,6 @@ namespace Dwolla.SerializableTypes
         public T Response { get; set; }
     }
 
-    public class MassPayCreate
-    {
-        
-    }
-
     public class MassPayJob
     {
         public string Id { get; set; }
@@ -182,5 +177,53 @@ namespace Dwolla.SerializableTypes
     {
         public int TransactionsCount { get; set; }
         public double TransactionsTotal { get; set; }
+    }
+
+    public class PurchaseOrder
+    {
+        string destinationId { get; set; }
+        double total { get; set; }
+        double tax { get; set; }
+        double discount { get; set; }
+        double shipping { get; set; }
+        public string notes { get; set; }
+        public double facilitatorAmount { get; set; }
+        public Dictionary<string, string> metadata { get; set; }
+        public List<CheckoutItem> orderItems { get; set; }
+    }
+
+    public class CheckoutItem
+    {
+        public string name { get; set;}
+        public string description { get; set; }
+        public int quantity { get; set; }
+        public double price { get; set; }
+    }
+
+    public class Checkout
+    {
+        public string CheckoutId { get; set; }
+        public double Discount { get; set; }
+        public double Shipping { get; set; }
+        public double Tax { get; set; }
+        public double Total { get; set; }
+        public string Status { get; set; }
+        public string FundingSource { get; set; }
+        public int TransactionId { get; set; }
+        public string ProfileId { get; set; }
+        public int DestinationTransactionId { get; set; }
+        public List<CheckoutItem> OrderItems { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
+    }
+
+    public class CheckoutComplete
+    {
+        public double Amount { get; set; }
+        public string CheckoutId { get; set; }
+        public string ClearingDate { get; set; }
+        public string OrderId { get; set; }
+        public bool TestMode { get; set; }
+        public int TransactionId { get; set; }
+        public int DestinatoinTransaactoinId { get; set; }
     }
 }
