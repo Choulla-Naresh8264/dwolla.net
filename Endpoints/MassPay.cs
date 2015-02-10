@@ -1,14 +1,21 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Dwolla.SerializableTypes;
 
 namespace Dwolla
 {
     class MassPay : Rest
     {
+        /// <summary>
+        /// Creates MassPay job
+        /// </summary>
+        /// <param name="fundingSource">Funding source for jobs</param>
+        /// <param name="items">List of MassPayItem objects</param>
+        /// <param name="aParams">Additional parameters</param>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <param name="altPin">Alternate PIN</param>
+        /// <returns></returns>
         public MassPayJob Create(string fundingSource, List<MassPayItem> items, Dictionary<string, string> aParams = null, string altToken = null,
             int? altPin = null)
         {
@@ -17,17 +24,11 @@ namespace Dwolla
                 {"oauth_token", altToken ?? C.access_token},
                 {"pin", altPin.ToString() ?? C.pin.ToString()},
                 {"fundsSource", fundingSource},
+                {"items", Jss.Serialize(items)}
             };
-
-            var itemDict = new Dictionary<string, List<MassPayItem>>
-            {
-                {"items", items}
-            };
-
-            data = itemDict.Union(data).ToDictionary(k => k.Key, v => v.Value);
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<MassPayJob>(Post("/transactions/refund", data));
+            return DwollaParse<MassPayJob>(Post("/masspay", data));
         }
 
         /// <summary>
