@@ -3,3 +3,8 @@ C:\Users\David\Documents\GitHub\dwolla.net\bin\Debug\dwolla.pdb
 C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.dll
 C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.pdb
 C:\Users\David\Documents\GitHub\dwolla.net\obj\Debug\dwolla.net.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Git\dwolla.net\bin\Debug\dwolla.dll
+C:\Users\David\Documents\Git\dwolla.net\bin\Debug\dwolla.pdb
+C:\Users\David\Documents\Git\dwolla.net\obj\Debug\dwolla.dll
+C:\Users\David\Documents\Git\dwolla.net\obj\Debug\dwolla.pdb
+C:\Users\David\Documents\Git\dwolla.net\obj\Debug\dwolla.net.csprojResolveAssemblyReference.cache

@@ -55,10 +55,10 @@ namespace Dwolla
         /// </summary>
         /// <param name="lat">Latitudinal coordinates</param>
         /// <param name="lon">Longitudinal coordinates</param>
-        /// <returns>UserNearby object</returns>
-        public UserNearby Nearby(double lat, double lon)
+        /// <returns>List of UserNearby objects</returns>
+        public List<UserNearby> Nearby(double lat, double lon)
         {
-            return DwollaParse<UserNearby>(Get("/users/nearby", new Dictionary<string, string>
+            return DwollaParse<List<UserNearby>>(Get("/users/nearby", new Dictionary<string, string>
             {
                 {"client_id", C.client_id},
                 {"client_secret", C.client_secret},

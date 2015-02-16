@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dwolla.net", "dwolla.net.csproj", "{515219C2-3D41-49E8-995E-2E3707B6558F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dwolla.net.test", "dwolla.net.test\dwolla.net.test.csproj", "{9B6A6523-2B8E-47AB-9854-933776A4E0E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{515219C2-3D41-49E8-995E-2E3707B6558F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{515219C2-3D41-49E8-995E-2E3707B6558F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{515219C2-3D41-49E8-995E-2E3707B6558F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
