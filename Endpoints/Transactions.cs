@@ -5,7 +5,7 @@ using Dwolla.SerializableTypes;
 
 namespace Dwolla
 {
-    class Transactions : Rest
+    public class Transactions : Rest
     {
         /// <summary>
         /// Sends money to specified destination user

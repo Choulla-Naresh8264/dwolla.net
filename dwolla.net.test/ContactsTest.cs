@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Script.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Dwolla;
@@ -12,7 +11,6 @@ namespace dwolla.net.test
     public class ContactsTest
     {
         public Contacts c = new Contacts();
-        public JavaScriptSerializer j = new JavaScriptSerializer();
 
         [TestMethod]
         public void TestGet()
