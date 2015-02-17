@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AccountsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ContactsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dwolla.net.csproj">
