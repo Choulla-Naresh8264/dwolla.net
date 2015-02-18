@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
+using System.Web;
+using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Web.Script.Serialization;
+
 using Dwolla.SerializableTypes;
 
 namespace Dwolla
@@ -40,6 +43,7 @@ namespace Dwolla
         /// </returns>
         protected T DwollaParse<T>(Task<string> response, bool noEnvelope=false)
         {
+            Console.WriteLine(response.Result);
             if (noEnvelope) return Jss.Deserialize<T>(response.Result);
             var r = Jss.Deserialize<DwollaResponse<T>>(response.Result);
             if (r.Success) return r.Response;
@@ -57,12 +61,11 @@ namespace Dwolla
         {
             using (var client = new HttpClient())
             {
-                var data = new FormUrlEncodedContent(parameters);
                 try
                 {
                     HttpResponseMessage request = await client.PostAsync(
                         (C.sandbox ? C.sandbox_host : C.production_host)
-                        + (altPostfix ?? C.default_postfix) + endpoint, data);
+                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json"));
                     return await request.Content.ReadAsStringAsync();
                 }
                 catch (Exception wtf)
