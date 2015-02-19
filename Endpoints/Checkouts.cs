@@ -5,7 +5,7 @@ using Dwolla.SerializableTypes;
 
 namespace Dwolla
 {
-    class Checkouts : Rest
+    public class Checkouts : Rest
     {
         /// <summary>
         /// Creates an off-site gateway checkout session
@@ -13,18 +13,18 @@ namespace Dwolla
         /// <param name="po">PurchaseOrder object</param>
         /// <param name="aParams">Additional parameters</param>
         /// <returns>Checkout URL</returns>
-        public string Create(PurchaseOrder po, Dictionary<string, string> aParams)
+        public string Create(PurchaseOrder po, Dictionary<string, object> aParams = null)
         {
-            var data = new Dictionary<string, string>
+            var data = new Dictionary<string, object>
             {
                 {"client_id", C.client_id},
                 {"client_secret", C.client_secret},
-                {"purchaseOrder", Jss.Serialize(po)}
+                {"purchaseOrder", po}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return C.sandbox ? C.sandbox_host : C.production_host 
-                + "payment/checkout" + DwollaParse<string>(Post("/offsitegateway/checkouts", data));
+            return (C.sandbox ? C.sandbox_host : C.production_host) 
+                + "payment/checkout" + DwollaParse<string>(PostSpecial("/offsitegateway/checkouts", data));
         }
 
         /// <summary>

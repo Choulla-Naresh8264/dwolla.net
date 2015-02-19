@@ -43,7 +43,6 @@ namespace Dwolla
         /// </returns>
         protected T DwollaParse<T>(Task<string> response, bool noEnvelope=false)
         {
-            Console.WriteLine(response.Result);
             if (noEnvelope) return Jss.Deserialize<T>(response.Result);
             var r = Jss.Deserialize<DwollaResponse<T>>(response.Result);
             if (r.Success) return r.Response;
@@ -57,7 +56,27 @@ namespace Dwolla
         /// <param name="parameters">A Dictionary with the parameters</param>
         /// <param name="altPostfix">Alternate REST postfix</param>
         /// <returns>C# task response, raw JSON string.</returns>
-        protected async Task<string> Post(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
+        protected async Task<string> Post(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage request = await client.PostAsync(
+                        (C.sandbox ? C.sandbox_host : C.production_host)
+                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json"));
+                    return await request.Content.ReadAsStringAsync();
+                }
+                catch (Exception wtf)
+                {
+                    Console.WriteLine("dwolla.net: An exception has occurred while making a POST request.");
+                    Console.WriteLine(wtf.ToString());
+                    return null;
+                }
+            }
+        }
+
+        protected async Task<string> PostSpecial(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {

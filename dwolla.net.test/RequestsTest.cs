@@ -13,7 +13,7 @@ namespace dwolla.net.test
         public Requests r = new Requests();
 
         /// <summary>
-        /// We create a request, grab its info, then cancel it. s
+        /// We create a request, grab its info, then cancel it.
         /// </summary>
         [TestMethod]
         public void TestCreateInfoCancel()

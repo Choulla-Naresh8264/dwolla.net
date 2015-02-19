@@ -56,6 +56,7 @@
     <Compile Include="ContactsTest.cs" />
     <Compile Include="TransactionsTest.cs" />
     <Compile Include="RequestsTest.cs" />
+    <Compile Include="CheckoutsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dwolla.net.csproj">

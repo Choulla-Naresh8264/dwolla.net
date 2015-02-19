@@ -181,11 +181,11 @@ namespace Dwolla.SerializableTypes
 
     public class PurchaseOrder
     {
-        string destinationId { get; set; }
-        double total { get; set; }
-        double tax { get; set; }
-        double discount { get; set; }
-        double shipping { get; set; }
+        public string destinationId { get; set; }
+        public double total { get; set; }
+        public double tax { get; set; }
+        public double discount { get; set; }
+        public double shipping { get; set; }
         public string notes { get; set; }
         public double facilitatorAmount { get; set; }
         public Dictionary<string, string> metadata { get; set; }
