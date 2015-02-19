@@ -119,7 +119,7 @@ namespace Dwolla.SerializableTypes
         public string DateCancelled { get; set; }
         public bool SenderAssumeFee { get; set; }
         public bool SenderAssumeAdditionalFee { get; set; }
-        public Dictionary<string, string> AdditionalFees { get; set; }
+        public List<string> AdditionalFees { get; set; }
         public Dictionary<string, string> Metadata { get; set; }
 
     }

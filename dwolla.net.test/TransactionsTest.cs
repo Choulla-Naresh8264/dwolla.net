@@ -11,14 +11,19 @@ namespace dwolla.net.test
     public class TransactionsTest
     {
         public Transactions t = new Transactions();
-        public int tnum;
 
+        /// <summary>
+        /// Instead of creating an ordered test, this is more readable
+        /// and makes sense to do chronologically (e.g send then check)
+        /// </summary>
         [TestMethod]
-        public void TestSend()
+        public void TestSendandInfo()
         {
-            var result = t.Send("812-174-9528", 0.01, altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7", altPin: 1337);
-            Assert.IsInstanceOfType(result, typeof(int));
-            tnum = result;
+            var send = t.Send("812-174-9528", 0.01, altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7", altPin: 1337);
+            Assert.IsInstanceOfType(send, typeof(int));
+
+            var info = t.Info(send.ToString(), "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            Assert.IsInstanceOfType(info, typeof(Transaction));
         }
 
         [TestMethod]
@@ -29,10 +34,10 @@ namespace dwolla.net.test
         }
 
         [TestMethod]
-        public void TestInfo()
+        public void TestStats()
         {
-            var result = t.Info(tnum.ToString(), "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
-            Assert.IsInstanceOfType(result, typeof(Transaction));
+            var result = t.Stats(altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            Assert.IsInstanceOfType(result, typeof(TransactionStats));
         }
     }
 }

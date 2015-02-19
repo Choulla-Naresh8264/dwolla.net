@@ -80,7 +80,7 @@ namespace Dwolla
         /// <param name="aParams">Additional parameters</param>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <param name="altPin">Alternate PIN</param>
-        /// <returns></returns>
+        /// <returns>RequestFulfilled object</returns>
         public RequestFulfilled Fulfill(string requestId, double amount, Dictionary<string, string> aParams = null,
             string altToken = null, int? altPin = null)
         {
