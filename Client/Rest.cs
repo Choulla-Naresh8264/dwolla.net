@@ -56,7 +56,7 @@ namespace Dwolla
         /// <param name="parameters">A Dictionary with the parameters</param>
         /// <param name="altPostfix">Alternate REST postfix</param>
         /// <returns>C# task response, raw JSON string.</returns>
-        protected async Task<string> Post(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
+        protected async Task<string> Post(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {

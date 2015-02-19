@@ -216,6 +216,11 @@ namespace Dwolla.SerializableTypes
         public Dictionary<string, string> Metadata { get; set; }
     }
 
+    public class CheckoutID
+    {
+        public string CheckoutId { get; set; }
+    }
+
     public class CheckoutComplete
     {
         public double Amount { get; set; }
