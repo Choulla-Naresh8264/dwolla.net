@@ -16,13 +16,25 @@ namespace dwolla.net.test
         /// We create a request, grab its info, then cancel it.
         /// </summary>
         [TestMethod]
-        public void TestCreateInfoCancel()
+        public void TestCreateGet()
         {
             var order = new PurchaseOrder();
             order.destinationId = "812-174-9528";
             order.total = 5.50;
+
             var url = c.Create(order, new Dictionary<string, object>{{"redirect", "http://www.google.com"}});
-            Console.WriteLine(url);
+            Assert.IsInstanceOfType(url, typeof(string));
+
+            var info = c.Get(url.Substring(url.LastIndexOf('/') + 1));
+            Assert.IsInstanceOfType(info, typeof(Checkout));
+
+            // Verifying that this endpoint works is left as an 
+            // exercise for the reader, mainly because it is difficult
+            // to do this in a responsive manner with Travis-CI integration.
+            /*
+             * var complete = c.Complete(url.Substring(url.LastIndexOf('/') + 1));
+             * Assert.IsInstanceOfType(info, typeof(CheckoutComplete));
+             */
         }
     }
 }

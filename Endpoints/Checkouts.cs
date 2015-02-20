@@ -24,7 +24,7 @@ namespace Dwolla
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
             return (C.sandbox ? C.sandbox_host : C.production_host) 
-                + "payment/checkout" + DwollaParse<CheckoutID>(PostSpecial("/offsitegateway/checkouts", data)).CheckoutId;
+                + "payment/checkout/" + DwollaParse<CheckoutID>(PostSpecial("/offsitegateway/checkouts", data)).CheckoutId;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Dwolla
         /// <returns></returns>
         public CheckoutComplete Complete(string checkoutId)
         {
-            return DwollaParse<CheckoutComplete>(Get("/offsitegateway/checkouts/" + checkoutId + "/complete",
+            return DwollaParse<CheckoutComplete>(Post("/offsitegateway/checkouts/" + checkoutId + "/complete",
             new Dictionary<string, string>
             {
                 {"client_id", C.client_id},

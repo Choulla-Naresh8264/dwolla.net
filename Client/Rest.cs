@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
@@ -31,8 +32,8 @@ namespace Dwolla
 
         /// <summary>
         ///     Fully parses result out of Dwolla envelope into easily
-        ///     usable serializable type. Verifies response and raises
-        ///     error if API exception encountered.
+        ///     usable serializable type. Verifies response 
+        ///     and raises error if API exception encountered.
         /// </summary>
         /// <typeparam name="T">Type of serializable data</typeparam>
         /// <param name="response">JSON response string</param>
