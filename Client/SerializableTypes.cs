@@ -43,6 +43,20 @@ namespace Dwolla.SerializableTypes
         public Dictionary<string, string> metadata { get; set; }
     }
 
+    public class MassPayRetrievedItem
+    {
+        public string JobId { get; set; }
+        public string ItemId { get; set; }
+        public string Destination { get; set; }
+        public string DestinationType { get; set; }
+        public double? Amount { get; set; }
+        public string Status { get; set; }
+        public int? TransactionId { get; set; }
+        public string Error { get; set; }
+        public string CreatedDate { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
+    }
+
     public class MassPayItemSummary
     {
         public int? Count { get; set; }

@@ -5,7 +5,7 @@ using Dwolla.SerializableTypes;
 
 namespace Dwolla
 {
-    class MassPay : Rest
+    public class MassPay : Rest
     {
         /// <summary>
         /// Creates MassPay job
@@ -16,19 +16,19 @@ namespace Dwolla
         /// <param name="altToken">Alternate OAuth token</param>
         /// <param name="altPin">Alternate PIN</param>
         /// <returns></returns>
-        public MassPayJob Create(string fundingSource, List<MassPayItem> items, Dictionary<string, string> aParams = null, string altToken = null,
+        public MassPayJob Create(string fundingSource, List<MassPayItem> items, Dictionary<string, object> aParams = null, string altToken = null,
             int? altPin = null)
         {
-            var data = new Dictionary<string, string>
+            var data = new Dictionary<string, object>
             {
                 {"oauth_token", altToken ?? C.access_token},
                 {"pin", altPin.ToString() ?? C.pin.ToString()},
                 {"fundsSource", fundingSource},
-                {"items", Jss.Serialize(items)}
+                {"items", items}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<MassPayJob>(Post("/masspay", data));
+            return DwollaParse<MassPayJob>(PostSpecial("/masspay", data));
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Dwolla
         /// <param name="aParams">Dictionary with additional parameters</param>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <returns>A List of MassPayItem objects</returns>
-        public List<MassPayItem> GetJobItems(string id, Dictionary<string, string> aParams = null,
+        public List<MassPayRetrievedItem> GetJobItems(string id, Dictionary<string, string> aParams = null,
             string altToken = null)
         {
             var data = new Dictionary<string, string>
@@ -63,7 +63,7 @@ namespace Dwolla
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<List<MassPayItem>>(Post("/masspay/" + id + "/items", data));
+            return DwollaParse<List<MassPayRetrievedItem>>(Get("/masspay/" + id + "/items", data));
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace Dwolla
         /// <param name="itemId">Target MassPay item ID</param>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <returns>MassPayItem object</returns>
-        public MassPayItem GetItem(string jobId, string itemId, string altToken = null)
+        public MassPayRetrievedItem GetItem(string jobId, string itemId, string altToken = null)
         {
-            return DwollaParse<MassPayItem>(Get("/masspay/" + jobId + "/items/" + itemId,
+            return DwollaParse<MassPayRetrievedItem>(Get("/masspay/" + jobId + "/items/" + itemId,
             new Dictionary<string, string>
                 {
                     {"oauth_token", altToken ?? C.access_token}

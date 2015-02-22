@@ -16,7 +16,7 @@ namespace dwolla.net.test
         /// We create a request, grab its info, then cancel it.
         /// </summary>
         [TestMethod]
-        public void TestCreateGet()
+        public void TestAll()
         {
             var order = new PurchaseOrder();
             order.destinationId = "812-174-9528";
