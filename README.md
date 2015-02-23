@@ -27,13 +27,13 @@ An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 An instance of the `Config` class is instantiated in `Rest()` as below:
 
-```
+```cs
 public Config C = new Config();
 ```
 
 For example, if you had an instance of the `Accounts()` class, you could change your `client_id` by doing the following:
 
-```
+```cs
 var a = new Accounts();
 a.C.client_id = "Some Client ID";
 ```
@@ -42,7 +42,7 @@ a.C.client_id = "Some Client ID";
 
 It is recommended that you do not change any of the values which have not been left empty.
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <appSettings>
@@ -68,7 +68,7 @@ Currently, `dwolla.net` only has one type of exception: `Dwolla.APIException` wh
 
 In order to make the developer's life easier, we have included various serializable types of objects needed to make requests to our API in `Dwolla.SerializableTypes`. Nullable types for primitives have been used so that the WCF serializer does not throw an exception when the API returns a null value for a non-nullable primitive. 
 
-```
+```cs
 using System;
 
 // This namespace contains WCF-serializable types for
