@@ -18,12 +18,12 @@ namespace dwolla.net.test
             var items = new List<MassPayItem>() 
             {{
                 new MassPayItem()
-                    {
+                {
                     amount = 5.50,
                     destination = "812-174-9528",
                     destinationType = "Dwolla",
                     notes = "Mmm, a unit test!"
-                    }
+                }
               }
             };
             var job = m.Create("Balance", items, altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7", altPin: 1337);

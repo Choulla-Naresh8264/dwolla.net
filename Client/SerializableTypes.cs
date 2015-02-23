@@ -166,6 +166,12 @@ namespace Dwolla.SerializableTypes
         public string token_type { get; set; }
     }
 
+    public class OAuthError
+    {
+        public string error { get; set; }
+        public string error_description { get; set; }
+    }
+
     public class Transaction
     {
         public string Id { get; set; }

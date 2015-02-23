@@ -24,7 +24,7 @@ namespace Dwolla
                 (C.sandbox ? C.sandbox_host : C.production_host)
                 + "oauth/v2/authenticate?client_id=" + HttpUtility.UrlEncode(C.client_id)
                 + "&response_type=code&scope=" + (scope ?? C.oauth_scope)
-                + (redirect == null ? "&redirect_uri=" + HttpUtility.UrlEncode(redirect) : ""));
+                + (redirect == null ? "" : "&redirect_uri=" + HttpUtility.UrlEncode(redirect)));
             return b.Uri;
         }
 
@@ -45,7 +45,12 @@ namespace Dwolla
                 {"code", code}
             };
             if (redirect != null) data["redirect_uri"] = redirect;
-            return DwollaParse<OAuthResponse>(Post("/token", data, "/oauth/v2"), true);
+
+            var response = Post("/token", data, "/oauth/v2").Result;
+            var oar = Jss.Deserialize<OAuthResponse>(response);
+            if (oar.access_token != null) return oar;
+            var err = Jss.Deserialize<OAuthError>(response);
+            throw new ApiException(err.error);
         }
 
         /// <summary>
@@ -55,13 +60,17 @@ namespace Dwolla
         /// <returns>OAuthResponse object</returns>
         public OAuthResponse Refresh(string refreshToken)
         {
-            return DwollaParse<OAuthResponse>(Post("/token", new Dictionary<string, string>
+            var response = Post("/token", new Dictionary<string, string>
             {
                 {"client_id", C.client_id},
                 {"client_secret", C.client_secret},
                 {"grant_type", "refresh_token"},
                 {"refresh_token", refreshToken}
-            }), true);
+            }).Result;
+
+            var oar = Jss.Deserialize<OAuthResponse>(response);
+            if (oar.access_token != null) return oar;
+            throw new OAuthException(Jss.Deserialize<OAuthError>(response).error);
         }
     }
 }

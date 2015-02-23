@@ -13,4 +13,15 @@ namespace Dwolla
         public ApiException(string message) { }
         protected ApiException(SerializationInfo info, StreamingContext context) { }
     }
+
+    /// <summary>
+    /// Custom exception class for invalid OAuth responses.
+    /// </summary>
+    [Serializable]
+    public class OAuthException : ApplicationException
+    {
+        public OAuthException() { }
+        public OAuthException(string message) { }
+        protected OAuthException(SerializationInfo info, StreamingContext context) { }
+    }
 }
