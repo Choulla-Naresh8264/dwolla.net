@@ -11,7 +11,6 @@ namespace dwolla.net.test
     public class MassPayTest
     {
         public MassPay m = new MassPay();
-        public string jobid;
 
         [TestMethod]
         public void TestAll()

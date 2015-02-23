@@ -69,7 +69,7 @@ namespace Dwolla.SerializableTypes
         public string Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public bool Verified { get; set; }
+        public bool? Verified { get; set; }
         public string ProcessingType { get; set; }
     }
 

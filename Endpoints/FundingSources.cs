@@ -54,7 +54,7 @@ namespace Dwolla
                 {"account_number", account},
                 {"routing_number", routing},
                 {"account_type", type},
-                {"account_name", name}
+                {"name", name}
             }));
         }
 
@@ -68,9 +68,9 @@ namespace Dwolla
         /// <param name="fundingId">Target funding ID</param>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <returns>Successful verification?</returns>
-        public bool Verify(double d1, double d2, string fundingId, string altToken = null)
+        public bool? Verify(double d1, double d2, string fundingId, string altToken = null)
         {
-            var fS = DwollaParse<FundingSource>(Post("/fundingsources/" + fundingId,
+            var fS = DwollaParse<FundingSource>(Post("/fundingsources/" + fundingId + "/verify",
                 new Dictionary<string, string>
                 {
                     {"oauth_token", altToken ?? C.access_token},
