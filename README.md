@@ -62,7 +62,11 @@ It is recommended that you do not change any of the values which have not been l
 
 ## Exceptions
 
-Currently, `dwolla.net` only has one type of exception: `Dwolla.APIException` which will be returned every time the server returns `false` for the `Success` variable in the standard ["Dwolla envelope"](https://docs.dwolla.com/?json#responses)
+`dwolla.net` has two exception classes to help identify invalid API responses:
+
+* `Dwolla.APIException` will be returned when the server returns `false` for the `Success` variable in the standard ["Dwolla envelope"](https://docs.dwolla.com/?json#responses)
+
+* `Dwolla.OAuthException` will be returned when `access_token` is returned null - the library will then attempt to re-serialize the response as an `OAuthError` to return the error body.
 
 ## Serializable Types
 
@@ -237,6 +241,12 @@ namespace Dwolla.SerializableTypes
         public string token_type { get; set; }
     }
 
+    public class OAuthError
+    {
+        public string error { get; set; }
+        public string error_description { get; set; }
+    }
+
     public class Transaction
     {
         public string Id { get; set; }
@@ -383,7 +393,9 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 
 ## Integration Testing
 
-`dwolla.net` uses [MSTest](https://msdn.microsoft.com/en-us/library/ms182489.aspx) for its tests, the preferred way to run them is by using the Visual Studio Test Explorer. Integration tests have been written for most endpoints. Endpoints which are impractical to do integration testing for have basic unit tests implemented to ensure proper functionality.
+`dwolla.net` uses [MSTest](https://msdn.microsoft.com/en-us/library/ms182489.aspx) for its tests, the preferred way to run them is by using the Visual Studio Test Explorer. Integration tests have been written for most endpoints. Endpoints which are impractical to do integration testing.
+
+Travis-Ci build verification is planned when the tests are going to be migrated to a framework such as X-Test wihch does not require Microsoft Windows or Visual Studio. As of now, the maintainer runs MSTest to validate each build before pushing. 
 
 ## Changelog
 
@@ -392,7 +404,7 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 
 ## Credits
 
-This wrapper is based on [HttpClient](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient%28v=vs.118%29.aspx) for REST capability, [MSTest](https://msdn.microsoft.com/en-us/library/ms182489.aspx) for unit testing, and [Travis](https://travis-ci.org/) for automagical build verification. 
+This wrapper is based on [HttpClient](https://msdn.microsoft.com/en-us/library/system.net.http.httpclient%28v=vs.118%29.aspx) for REST capability and [MSTest](https://msdn.microsoft.com/en-us/library/ms182489.aspx) for unit testing.
 
 Initially written by [David Stancu](http://davidstancu.me) (david@dwolla.com).
 

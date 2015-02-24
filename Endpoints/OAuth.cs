@@ -46,11 +46,11 @@ namespace Dwolla
             };
             if (redirect != null) data["redirect_uri"] = redirect;
 
-            var response = Post("/token", data, "/oauth/v2").Result;
-            var oar = Jss.Deserialize<OAuthResponse>(response);
+            var response = Post("/token", data, "/oauth/v2");
+
+            var oar = Jss.Deserialize<OAuthResponse>(response.Result);
             if (oar.access_token != null) return oar;
-            var err = Jss.Deserialize<OAuthError>(response);
-            throw new ApiException(err.error);
+            throw new ApiException(Jss.Deserialize<OAuthError>(response.Result).error_description);
         }
 
         /// <summary>
@@ -66,11 +66,11 @@ namespace Dwolla
                 {"client_secret", C.client_secret},
                 {"grant_type", "refresh_token"},
                 {"refresh_token", refreshToken}
-            }).Result;
+            });
 
-            var oar = Jss.Deserialize<OAuthResponse>(response);
+            var oar = Jss.Deserialize<OAuthResponse>(response.Result);
             if (oar.access_token != null) return oar;
-            throw new OAuthException(Jss.Deserialize<OAuthError>(response).error);
+            throw new OAuthException(Jss.Deserialize<OAuthError>(response.Result).error_description);
         }
     }
 }
