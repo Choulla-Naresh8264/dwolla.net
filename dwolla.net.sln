@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dwolla.net", "dwolla.net.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dwolla.net.test", "dwolla.net.test\dwolla.net.test.csproj", "{9B6A6523-2B8E-47AB-9854-933776A4E0E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp", "ExampleApp\ExampleApp.csproj", "{7BF615EB-7531-4043-8F76-4FEB61CE70C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B6A6523-2B8E-47AB-9854-933776A4E0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF615EB-7531-4043-8F76-4FEB61CE70C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF615EB-7531-4043-8F76-4FEB61CE70C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF615EB-7531-4043-8F76-4FEB61CE70C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF615EB-7531-4043-8F76-4FEB61CE70C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

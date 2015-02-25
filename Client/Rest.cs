@@ -42,31 +42,31 @@ namespace Dwolla
         ///     Can either be a single object or a serializable
         ///     type as a part of a collection
         /// </returns>
-        protected T DwollaParse<T>(Task<string> response, bool noEnvelope=false)
+        protected T DwollaParse<T>(string response, bool noEnvelope=false)
         {
-            if (noEnvelope) return Jss.Deserialize<T>(response.Result);
-            var r = Jss.Deserialize<DwollaResponse<T>>(response.Result);
+            if (noEnvelope) return Jss.Deserialize<T>(response);
+            var r = Jss.Deserialize<DwollaResponse<T>>(response);
             if (r.Success) return r.Response;
             throw new ApiException(r.Message);
         }
 
         /// <summary>
-        ///     Asynchronous POST request wrapper around HttpClient
+        ///     Synchronous POST request wrapper around HttpClient
         /// </summary>
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
         /// <param name="altPostfix">Alternate REST postfix</param>
         /// <returns>C# task response, raw JSON string.</returns>
-        protected async Task<string> Post(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
+        protected string Post(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {
                 try
                 {
-                    HttpResponseMessage request = await client.PostAsync(
+                    HttpResponseMessage request = client.PostAsync(
                         (C.sandbox ? C.sandbox_host : C.production_host)
-                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json"));
-                    return await request.Content.ReadAsStringAsync();
+                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
+                    return request.Content.ReadAsStringAsync().Result;
                 }
                 catch (Exception wtf)
                 {
@@ -77,16 +77,16 @@ namespace Dwolla
             }
         }
 
-        protected async Task<string> PostSpecial(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
+        protected string PostSpecial(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {
                 try
                 {
-                    HttpResponseMessage request = await client.PostAsync(
+                    HttpResponseMessage request = client.PostAsync(
                         (C.sandbox ? C.sandbox_host : C.production_host)
-                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json"));
-                    return await request.Content.ReadAsStringAsync();
+                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
+                    return request.Content.ReadAsStringAsync().Result;
                 }
                 catch (Exception wtf)
                 {
@@ -98,13 +98,13 @@ namespace Dwolla
         }
 
         /// <summary>
-        ///     Asynchronous GET request wrapper around HttpClient
+        ///     Synchronous GET request wrapper around HttpClient
         /// </summary>
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
         /// <param name="altPostfix">Alternate REST postfix</param>
         /// <returns>C# task response, raw JSON string.</returns>
-        protected async Task<string> Get(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
+        protected string Get(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
             {
@@ -121,8 +121,7 @@ namespace Dwolla
 
                 try
                 {
-                    Stream reply = await client.GetStreamAsync(builder.Uri);
-                    return await client.GetStringAsync(builder.Uri);
+                    return client.GetStringAsync(builder.Uri).Result;
                 }
                 catch (Exception wtf)
                 {

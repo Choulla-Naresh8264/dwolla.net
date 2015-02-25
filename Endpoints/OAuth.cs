@@ -48,9 +48,9 @@ namespace Dwolla
 
             var response = Post("/token", data, "/oauth/v2");
 
-            var oar = Jss.Deserialize<OAuthResponse>(response.Result);
+            var oar = Jss.Deserialize<OAuthResponse>(response);
             if (oar.access_token != null) return oar;
-            throw new ApiException(Jss.Deserialize<OAuthError>(response.Result).error_description);
+            throw new ApiException(Jss.Deserialize<OAuthError>(response).error_description);
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace Dwolla
                 {"refresh_token", refreshToken}
             });
 
-            var oar = Jss.Deserialize<OAuthResponse>(response.Result);
+            var oar = Jss.Deserialize<OAuthResponse>(response);
             if (oar.access_token != null) return oar;
-            throw new OAuthException(Jss.Deserialize<OAuthError>(response.Result).error_description);
+            throw new OAuthException(Jss.Deserialize<OAuthError>(response).error_description);
         }
     }
 }
