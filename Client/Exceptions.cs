@@ -9,8 +9,8 @@ namespace Dwolla
     [Serializable]
     public class ApiException : ApplicationException
     {
-        public ApiException() { }
-        public ApiException(string message) { }
+        public ApiException() : base() { }
+        public ApiException(string message) : base(message) { }
         protected ApiException(SerializationInfo info, StreamingContext context) { }
     }
 
@@ -20,8 +20,8 @@ namespace Dwolla
     [Serializable]
     public class OAuthException : ApplicationException
     {
-        public OAuthException() { }
-        public OAuthException(string message) { }
+        public OAuthException() : base() { }
+        public OAuthException(string message) : base(message) { }
         protected OAuthException(SerializationInfo info, StreamingContext context) { }
     }
 }

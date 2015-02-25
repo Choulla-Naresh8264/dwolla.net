@@ -16,7 +16,7 @@ namespace Dwolla
         /// <param name="altToken">Alternate OAuth token</param>
         /// <param name="altPin">Alternate pin</param>
         /// <returns>Resulting transaction ID</returns>
-        public int Send(string destinationId, double amount, Dictionary<string, string> aParams = null,
+        public int? Send(string destinationId, double amount, Dictionary<string, string> aParams = null,
             string altToken = null, int? altPin = null)
         {
             var data = new Dictionary<string, string>
@@ -28,7 +28,7 @@ namespace Dwolla
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<int>(Post("/transactions/send", data));
+            return DwollaParse<int?>(Post("/transactions/send", data));
         }
 
         /// <summary>
