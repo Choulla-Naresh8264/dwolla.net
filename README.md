@@ -60,6 +60,20 @@ It is recommended that you do not change any of the values which have not been l
 </configuration>
 ```
 
+#### Example: List Transactions
+
+To list 10 transactions from a user with the OAuth token set in the configuration settings:
+```cs
+var t = new Transactions();
+var list = t.Get();
+```
+
+...or, to specify an alternate OAuth token:
+```cs
+var t = new Transactions();
+var list = t.Get(altToken: "Some Alternate OAuth Token");
+```
+
 ## Example Application
 
 `ExampleApp` is an ASP.NET C# application that can send money and list transaction history. 
