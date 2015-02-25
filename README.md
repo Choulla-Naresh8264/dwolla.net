@@ -64,12 +64,16 @@ It is recommended that you do not change any of the values which have not been l
 
 To list 10 transactions from a user with the OAuth token set in the configuration settings:
 ```cs
+using Dwolla;
+
 var t = new Transactions();
 var list = t.Get();
 ```
 
 ...or, to specify an alternate OAuth token:
 ```cs
+using Dwolla;
+
 var t = new Transactions();
 var list = t.Get(altToken: "Some Alternate OAuth Token");
 ```
