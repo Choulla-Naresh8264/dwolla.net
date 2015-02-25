@@ -60,6 +60,12 @@ It is recommended that you do not change any of the values which have not been l
 </configuration>
 ```
 
+## Example Application
+
+`ExampleApp` is an ASP.NET C# application that can send money and list transaction history. 
+
+![ExampleApp](http://puu.sh/gcgVw/42b3d4d7a1.png)
+
 ## Exceptions
 
 `dwolla.net` has two exception classes to help identify invalid API responses:
@@ -393,7 +399,7 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 
 ## Integration Testing
 
-`dwolla.net` uses [MSTest](https://msdn.microsoft.com/en-us/library/ms182489.aspx) for its tests, the preferred way to run them is by using the Visual Studio Test Explorer. Integration tests have been written for most endpoints. Endpoints which are impractical to do integration testing.
+`dwolla.net` uses [MSTest](https://msdn.microsoft.com/en-us/library/ms182489.aspx) for its tests, the preferred way to run them is by using the Visual Studio Test Explorer. Integration tests have been written for most endpoints, with unit tests coming on the way for endpoints which are impractical to do live tests for.
 
 Travis-Ci build verification is planned when the tests are going to be migrated to a framework such as X-Test wihch does not require Microsoft Windows or Visual Studio. As of now, the maintainer runs MSTest to validate each build before pushing. 
 
