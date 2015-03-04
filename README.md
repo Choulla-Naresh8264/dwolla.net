@@ -9,7 +9,11 @@ An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 ## Installation
 
-`dwolla.net` is available on NuGet.
+`dwolla.net` is available on [NuGet](https://www.nuget.org/packages/dwolla.net). To install, drop to a package-management shell in VS or similar and execute:
+
+```powershell
+Install-Package dwolla.net
+```
 
 ## Quickstart
 
@@ -358,7 +362,6 @@ namespace Dwolla.SerializableTypes
         public int? DestinationTransactionId { get; set; }
     }
 }
-
 ```
 
 ## Structure

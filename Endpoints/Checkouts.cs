@@ -8,7 +8,7 @@ namespace Dwolla
     public class Checkouts : Rest
     {
         /// <summary>
-        /// Creates an off-site gateway checkout session
+        ///     Creates an off-site gateway checkout session
         /// </summary>
         /// <param name="po">PurchaseOrder object</param>
         /// <param name="aParams">Additional parameters</param>
@@ -43,10 +43,10 @@ namespace Dwolla
         }
 
         /// <summary>
-        /// Completes an offsite-gateway "Pay Later" checkout session.
+        ///     Completes an offsite-gateway "Pay Later" checkout session.
         /// </summary>
-        /// <param name="checkoutId"></param>
-        /// <returns></returns>
+        /// <param name="checkoutId">Checkout ID</param>
+        /// <returns>CheckoutComplete object</returns>
         public CheckoutComplete Complete(string checkoutId)
         {
             return DwollaParse<CheckoutComplete>(Post("/offsitegateway/checkouts/" + checkoutId + "/complete",

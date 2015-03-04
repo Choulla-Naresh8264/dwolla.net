@@ -8,14 +8,14 @@ namespace Dwolla
     public class MassPay : Rest
     {
         /// <summary>
-        /// Creates MassPay job
+        ///     Creates MassPay job
         /// </summary>
         /// <param name="fundingSource">Funding source for jobs</param>
         /// <param name="items">List of MassPayItem objects</param>
         /// <param name="aParams">Additional parameters</param>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <param name="altPin">Alternate PIN</param>
-        /// <returns></returns>
+        /// <returns>MassPayJob object</returns>
         public MassPayJob Create(string fundingSource, List<MassPayItem> items, Dictionary<string, object> aParams = null, string altToken = null,
             int? altPin = null)
         {
@@ -48,7 +48,7 @@ namespace Dwolla
         }
 
         /// <summary>
-        /// Gets all items for a created MassPay job
+        ///     Gets all items for a created MassPay job
         /// </summary>
         /// <param name="id">Target MassPay job ID</param>
         /// <param name="aParams">Dictionary with additional parameters</param>
@@ -67,7 +67,7 @@ namespace Dwolla
         }
 
         /// <summary>
-        /// Gets an item from a created MassPay job
+        ///     Gets an item from a created MassPay job
         /// </summary>
         /// <param name="jobId">Target MassPay job ID</param>
         /// <param name="itemId">Target MassPay item ID</param>
@@ -83,8 +83,8 @@ namespace Dwolla
         }
 
         /// <summary>
-        /// Lists all MassPay jobs for the user
-        /// associated with the current OAuth token
+        ///     Lists all MassPay jobs for the user
+        ///     associated with the current OAuth token
         /// </summary>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <returns>List of MassPayJob objects</returns>

@@ -8,7 +8,7 @@ namespace Dwolla
     public class Transactions : Rest
     {
         /// <summary>
-        /// Sends money to specified destination user
+        ///     Sends money to specified destination user
         /// </summary>
         /// <param name="destinationId">Destination Dwolla ID</param>
         /// <param name="amount">Amount to send</param>

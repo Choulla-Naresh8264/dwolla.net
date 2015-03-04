@@ -90,7 +90,7 @@ namespace Dwolla
         /// <param name="status">Enable toggle</param>
         /// <param name="fundingId">Target funding ID</param>
         /// <param name="altToken">Alternate OAuth token</param>
-        /// <returns></returns>
+        /// <returns>Account autowithdrawal status</returns>
         public bool ToggleAutoWithdrawalStatus(bool status, string fundingId, string altToken = null)
         {
             var r = DwollaParse<string>(Post("/accounts/features/auto_withdrawl",

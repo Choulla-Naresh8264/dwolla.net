@@ -1,11 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Web;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net.Http.Headers;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web.Script.Serialization;
@@ -56,7 +52,7 @@ namespace Dwolla
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
         /// <param name="altPostfix">Alternate REST postfix</param>
-        /// <returns>C# task response, raw JSON string.</returns>
+        /// <returns>JSON-encoded string with API response</returns>
         protected string Post(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
@@ -77,6 +73,15 @@ namespace Dwolla
             }
         }
 
+        /// <summary>
+        ///     A variation of the POST method wherein the only difference
+        ///     is that we post a Dictionary<string,object>. Used for MassPay 
+        ///     and off-site gateway checkouts. 
+        /// </summary>
+        /// <param name="endpoint">Dwolla API endpoint</param>
+        /// <param name="parameters">A Dictionary with the parameters</param>
+        /// <param name="altPostfix">Alternate REST postfix</param>
+        /// <returns>JSON-encoded string with API response</returns>
         protected string PostSpecial(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())
@@ -103,7 +108,7 @@ namespace Dwolla
         /// <param name="endpoint">Dwolla API endpoint</param>
         /// <param name="parameters">A Dictionary with the parameters</param>
         /// <param name="altPostfix">Alternate REST postfix</param>
-        /// <returns>C# task response, raw JSON string.</returns>
+        /// <returns>JSON-encoded string with API response</returns>
         protected string Get(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
         {
             using (var client = new HttpClient())

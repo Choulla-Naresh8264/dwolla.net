@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("dwolla.net")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("An officially supported WCF-based Dwolla API wrapper")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Dwolla Inc.")]
 [assembly: AssemblyProduct("dwolla.net")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright © 2015 Dwolla Inc, David Stancu")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
