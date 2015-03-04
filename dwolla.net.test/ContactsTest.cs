@@ -15,7 +15,7 @@ namespace dwolla.net.test
         [TestMethod]
         public void TestGet()
         {
-            var result = c.Get(altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var result = c.Get(altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(result, typeof(List<Contact>));
         }
 

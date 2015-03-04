@@ -16,7 +16,7 @@ namespace ExampleApp
         protected void tHistButton_Click(object sender, EventArgs e)
         {
             var t = new Transactions();
-            foreach (Transaction z in t.Get(altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7"))
+            foreach (Transaction z in t.Get(altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l"))
             {
                 Console.WriteLine("Transaction found");
                 TransHistoryLB.Items.Add(new ListItem(String.Format("ID: {0}, Amount: {1}", z.Id, z.Amount.ToString())));
@@ -28,7 +28,7 @@ namespace ExampleApp
             var t = new Transactions();
             try
             {
-                t.Send(DestTB.Text, Convert.ToDouble(AmountTB.Text), new Dictionary<string, string> { { "destinationType", destDD.SelectedIndex == 0 ? "Dwolla" : "Email" } }, "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+                t.Send(DestTB.Text, Convert.ToDouble(AmountTB.Text), new Dictionary<string, string> { { "destinationType", destDD.SelectedIndex == 0 ? "Dwolla" : "Email" } }, "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             }
             catch (ApiException a)
             {

@@ -27,18 +27,18 @@ namespace dwolla.net.test
         {
             var r = new Random();
 
-            var newSource = f.Add(r.Next(99999999).ToString(), "021000021", "Checking", "My Bank", "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var newSource = f.Add(r.Next(99999999).ToString(), "021000021", "Checking", "My Bank", "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(newSource, typeof(FundingSource));
 
             /*
-             * var verify = f.Verify(0.01, 0.05, newSource.Id, "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+             * var verify = f.Verify(0.01, 0.05, newSource.Id, "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
              * Assert.IsInstanceOfType(verify, typeof(bool));
              */
 
-            var info = f.Info(newSource.Id, "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var info = f.Info(newSource.Id, "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(info, typeof(FundingSource));
 
-            var list = f.Get(altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var list = f.Get(altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(list, typeof(List<FundingSource>));
         }
     }

@@ -18,20 +18,20 @@ namespace dwolla.net.test
         [TestMethod]
         public void TestCreateInfoCancel()
         {
-            var create = r.Create("812-174-9528", 0.01, altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var create = r.Create("812-174-9528", 0.01, altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(create, typeof(int));
 
-            var info = r.Info(create.ToString(), altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var info = r.Info(create.ToString(), altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(info, typeof(Request));
 
-            var cancel = r.Cancel(create.ToString(), altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var cancel = r.Cancel(create.ToString(), altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(cancel, typeof(string));
         }
 
         [TestMethod]
         public void TestGet()
         {
-            var result = r.Get(altToken: "J5GyKV4STxJJcVaJvdHXIOCojjEptVurmOtP8LaHk+Q8RGX6M7");
+            var result = r.Get(altToken: "raopmI6N9UIq87uWqhXB5v7xIgi49EH3K3qSFwtoZ/CzcBCN+l");
             Assert.IsInstanceOfType(result, typeof(List<Request>));
         }
     }
