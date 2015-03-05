@@ -21,8 +21,8 @@ namespace Dwolla
         {
             var data = new Dictionary<string, object>
             {
-                {"oauth_token", altToken ?? C.access_token},
-                {"pin", altPin.ToString() ?? C.pin.ToString()},
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()},
                 {"fundsSource", fundingSource},
                 {"items", items}
             };
@@ -43,7 +43,7 @@ namespace Dwolla
             return DwollaParse<MassPayJob>(Get("/masspay/" + id,
             new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
         }
 
@@ -59,7 +59,7 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token},
+                {"oauth_token", altToken ?? C.dwolla_access_token},
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
@@ -78,7 +78,7 @@ namespace Dwolla
             return DwollaParse<MassPayRetrievedItem>(Get("/masspay/" + jobId + "/items/" + itemId,
             new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
         }
 
@@ -93,7 +93,7 @@ namespace Dwolla
             return DwollaParse<List<MassPayJob>>(Get("/masspay",
             new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
         }
     }

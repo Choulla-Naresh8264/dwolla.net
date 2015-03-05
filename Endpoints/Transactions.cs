@@ -21,8 +21,8 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token},
-                {"pin", altPin.ToString() ?? C.pin.ToString()},
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()},
                 {"destinationId", destinationId},
                 {"amount", amount.ToString()}
             };
@@ -42,9 +42,9 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token},
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret}
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
@@ -63,9 +63,9 @@ namespace Dwolla
             return DwollaParse<Transaction>(Get("/transactions/" + transactionId,
             new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token},
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret}
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret}
             }));
         }
 
@@ -85,8 +85,8 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token},
-                {"pin", altPin.ToString() ?? C.pin.ToString()},
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()},
                 {"fundsSource", fundingSource},
                 {"transactionId", transactionId},
                 {"amount", amount.ToString()}
@@ -107,7 +107,7 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token}
+                {"oauth_token", altToken ?? C.dwolla_access_token}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);

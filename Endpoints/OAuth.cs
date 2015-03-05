@@ -21,9 +21,9 @@ namespace Dwolla
         public Uri GenAuthUrl(string redirect = null, string scope = null)
         {
             var b = new UriBuilder(
-                (C.sandbox ? C.sandbox_host : C.production_host)
-                + "oauth/v2/authenticate?client_id=" + HttpUtility.UrlEncode(C.client_id)
-                + "&response_type=code&scope=" + (scope ?? C.oauth_scope)
+                (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                + "oauth/v2/authenticate?client_id=" + HttpUtility.UrlEncode(C.dwolla_key)
+                + "&response_type=code&scope=" + (scope ?? C.dwolla_oauth_scope)
                 + (redirect == null ? "" : "&redirect_uri=" + HttpUtility.UrlEncode(redirect)));
             return b.Uri;
         }
@@ -39,8 +39,8 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret},
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret},
                 {"grant_type", "authorization_code"},
                 {"code", code}
             };
@@ -62,8 +62,8 @@ namespace Dwolla
         {
             var response = Post("/token", new Dictionary<string, string>
             {
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret},
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret},
                 {"grant_type", "refresh_token"},
                 {"refresh_token", refreshToken}
             });

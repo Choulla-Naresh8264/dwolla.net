@@ -17,13 +17,13 @@ namespace Dwolla
         {
             var data = new Dictionary<string, object>
             {
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret},
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret},
                 {"purchaseOrder", po}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return (C.sandbox ? C.sandbox_host : C.production_host) 
+            return (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host) 
                 + "payment/checkout/" + DwollaParse<CheckoutID>(PostSpecial("/offsitegateway/checkouts", data)).CheckoutId;
         }
 
@@ -37,8 +37,8 @@ namespace Dwolla
             return DwollaParse<Checkout>(Get("/offsitegateway/checkouts/" + checkoutId,
             new Dictionary<string, string>
             {
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret}
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret}
             }));
         }
 
@@ -52,8 +52,8 @@ namespace Dwolla
             return DwollaParse<CheckoutComplete>(Post("/offsitegateway/checkouts/" + checkoutId + "/complete",
             new Dictionary<string, string>
             {
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret}
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret}
             }));
         }
     }

@@ -1,11 +1,11 @@
-dwolla-php
+dwolla.net
 =========
 
 An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 ## Version
 
-1.0.1
+1.0.2
 
 ## Installation
 
@@ -425,6 +425,9 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 Travis-Ci build verification is planned when the tests are going to be migrated to a framework such as X-Test wihch does not require Microsoft Windows or Visual Studio. As of now, the maintainer runs MSTest to validate each build before pushing. 
 
 ## Changelog
+
+1.0.2
+* Changed to less ambiguous configuration keys (e.g `client_id` to `dwolla_key`).
 
 1.0.1
 * Removed useless dependencies, pushed working copy to NuGet. 

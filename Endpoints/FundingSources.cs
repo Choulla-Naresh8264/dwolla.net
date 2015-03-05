@@ -15,7 +15,7 @@ namespace Dwolla
         public FundingSource Info(string fundingId, string altToken = null)
         {
             return DwollaParse<FundingSource>(Get("/fundingsources/" + fundingId,
-                new Dictionary<string, string> {{"oauth_token", altToken ?? C.access_token}}));
+                new Dictionary<string, string> {{"oauth_token", altToken ?? C.dwolla_access_token}}));
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Dwolla
         {
             var data = new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token}
+                {"oauth_token", altToken ?? C.dwolla_access_token}
             };
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
@@ -50,7 +50,7 @@ namespace Dwolla
         {
             return DwollaParse<FundingSource>(Post("/fundingsources", new Dictionary<string, string>
             {
-                {"oauth_token", altToken ?? C.access_token},
+                {"oauth_token", altToken ?? C.dwolla_access_token},
                 {"account_number", account},
                 {"routing_number", routing},
                 {"account_type", type},
@@ -73,7 +73,7 @@ namespace Dwolla
             var fS = DwollaParse<FundingSource>(Post("/fundingsources/" + fundingId + "/verify",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token},
+                    {"oauth_token", altToken ?? C.dwolla_access_token},
                     {"deposit1", d1.ToString()},
                     {"deposit2", d2.ToString()}
                 }));
@@ -95,8 +95,8 @@ namespace Dwolla
             return DwollaParse<Transaction>(Post("/fundingsources/" + fundingId + "/withdraw",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token},
-                    {"pin", altPin.ToString() ?? C.pin.ToString()},
+                    {"oauth_token", altToken ?? C.dwolla_access_token},
+                    {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()},
                     {"amount", amount.ToString()},
                 }));
         }
@@ -116,8 +116,8 @@ namespace Dwolla
             return DwollaParse<Transaction>(Post("/fundingsources/" + fundingId + "/deposit",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token},
-                    {"pin", altPin.ToString() ?? C.pin.ToString()},
+                    {"oauth_token", altToken ?? C.dwolla_access_token},
+                    {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()},
                     {"amount", amount.ToString()},
                 }));
         }

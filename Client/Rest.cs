@@ -60,8 +60,8 @@ namespace Dwolla
                 try
                 {
                     HttpResponseMessage request = client.PostAsync(
-                        (C.sandbox ? C.sandbox_host : C.production_host)
-                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
+                        (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                        + (altPostfix ?? C.dwolla_default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
                     return request.Content.ReadAsStringAsync().Result;
                 }
                 catch (Exception wtf)
@@ -89,8 +89,8 @@ namespace Dwolla
                 try
                 {
                     HttpResponseMessage request = client.PostAsync(
-                        (C.sandbox ? C.sandbox_host : C.production_host)
-                        + (altPostfix ?? C.default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
+                        (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                        + (altPostfix ?? C.dwolla_default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
                     return request.Content.ReadAsStringAsync().Result;
                 }
                 catch (Exception wtf)
@@ -114,8 +114,8 @@ namespace Dwolla
             using (var client = new HttpClient())
             {
                 var builder = new UriBuilder(
-                    (C.sandbox ? C.sandbox_host : C.production_host)
-                    + (altPostfix ?? C.default_postfix) + endpoint);
+                    (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                    + (altPostfix ?? C.dwolla_default_postfix) + endpoint);
 
                 NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
 

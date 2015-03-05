@@ -15,8 +15,8 @@ namespace Dwolla
             return DwollaParse<UserBasic>(Get("/users/" + accountId,
                 new Dictionary<string, string>
                 {
-                    {"client_id", C.client_id},
-                    {"client_secret", C.client_secret},
+                    {"client_id", C.dwolla_key},
+                    {"client_secret", C.dwolla_secret},
                 }));
         }
 
@@ -31,7 +31,7 @@ namespace Dwolla
             return DwollaParse<UserFull>(Get("/users",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
         }
 
@@ -46,7 +46,7 @@ namespace Dwolla
             return DwollaParse<double>(Get("/balance",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
         }
 
@@ -60,8 +60,8 @@ namespace Dwolla
         {
             return DwollaParse<List<UserNearby>>(Get("/users/nearby", new Dictionary<string, string>
             {
-                {"client_id", C.client_id},
-                {"client_secret", C.client_secret},
+                {"client_id", C.dwolla_key},
+                {"client_secret", C.dwolla_secret},
                 {"latitude", lat.ToString()},
                 {"longitude", lon.ToString()}
             }));
@@ -78,7 +78,7 @@ namespace Dwolla
             return DwollaParse<AutoWithdrawalStatus>(Get("/accounts/features/auto_withdrawl",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
         }
 
@@ -96,7 +96,7 @@ namespace Dwolla
             var r = DwollaParse<string>(Post("/accounts/features/auto_withdrawl",
                 new Dictionary<string, string>
                 {
-                    {"oauth_token", altToken ?? C.access_token}
+                    {"oauth_token", altToken ?? C.dwolla_access_token}
                 }));
 
             // I figure this will be more useful than the string
