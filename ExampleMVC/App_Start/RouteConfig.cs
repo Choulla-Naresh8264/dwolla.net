@@ -18,6 +18,12 @@ namespace ExampleMVC
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "OAuth",
+                url: "{controller}/{action}/{code}",
+                defaults: new { controller = "Home", action = "OAuth", code = UrlParameter.Optional }
+            );
         }
     }
 }
