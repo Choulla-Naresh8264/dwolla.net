@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Send";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Welcome to ExampleMVC, @ViewData["name"]</h2>
+<p>You can use this application to send money using your Dwolla account.</p>
+
+@using (Html.BeginForm("Send", "Home", FormMethod.Post))
+{
+    <br />
+    <fieldset>
+        Destination ID:<br /> <input type="text" name="dwolla_dest"/> <br /><br />
+        Destination Type: <br /> Dwolla ID <input type="radio" name="dwolla_id_type" value="Dwolla" /> E-Mail <input type="radio" name="dwolla_id_type" value="EMail" /> <br /> <br />
+        Amount:<br /> <input type="text" name="dwolla_amount"/> <br /><br />
+        PIN:<br /> <input type="number" name="dwolla_pin"/> <br /> <br /><br />
+        <input type="submit" value="Send!"/>
+    </fieldset>
+}
+
+@Html.ActionLink("Log out", "Index")
