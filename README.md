@@ -5,7 +5,7 @@ An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 ## Version
 
-1.0.2
+1.0.3
 
 ## Installation
 
@@ -82,7 +82,13 @@ var t = new Transactions();
 var list = t.Get(altToken: "Some Alternate OAuth Token");
 ```
 
-## Example Application
+## Example Applications
+
+`ExampleMVC` is an ASP.NET C# MVC application that can send money, and uses Razor/cshtml and partial views. It automatically handles the OAuth handshake as you log in with your Dwolla account.
+
+![Logon](http://puu.sh/gGIVJ/ced4ede64f.png)
+![OAuth](http://puu.sh/gGIWK/1331885e42.png)
+![Send](http://puu.sh/gGIXT/7d21c7d5c5.png)
 
 `ExampleApp` is an ASP.NET C# application that can send money and list transaction history. 
 
@@ -425,6 +431,9 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 Travis-Ci build verification is planned when the tests are going to be migrated to a framework such as X-Test wihch does not require Microsoft Windows or Visual Studio. As of now, the maintainer runs MSTest to validate each build before pushing. 
 
 ## Changelog
+
+1.0.3
+* Added example application which uses Razor and MVC.
 
 1.0.2
 * Changed to less ambiguous configuration keys (e.g `client_id` to `dwolla_key`).
