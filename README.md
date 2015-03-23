@@ -1,6 +1,8 @@
 dwolla.net
 =========
 
+[![Join the chat at https://gitter.im/Dwolla/dwolla.net](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dwolla/dwolla.net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 ## Version
