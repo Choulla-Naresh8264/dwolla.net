@@ -7,7 +7,7 @@ An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 ## Version
 
-1.0.3
+1.0.4
 
 ## Installation
 
@@ -277,6 +277,14 @@ namespace Dwolla.SerializableTypes
         public string token_type { get; set; }
     }
 
+    public class OAuthCatalog
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public string Response { get; set; }
+        public List<Dictionary<string, Dictionary<string, string>>> _links { get; set; }
+    }
+
     public class OAuthError
     {
         public string error { get; set; }
@@ -412,6 +420,7 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
  * `GenAuthUrl()`: Generates OAuth permission link URL
  * `Get()`: Retrieves OAuth + Refresh token pair from Dwolla servers.
  * `Refresh()`: Retrieves OAuth + Refresh pair with refresh token.
+ * `Catalog()`: Returns a catalog of endpoints available for use with the current OAuth token
 * `Requests()`:
  * `Create()`: Request money from user.
  * `Get()`: Lists all pending money requests.
@@ -433,6 +442,9 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 Travis-Ci build verification is planned when the tests are going to be migrated to a framework such as X-Test wihch does not require Microsoft Windows or Visual Studio. As of now, the maintainer runs MSTest to validate each build before pushing. 
 
 ## Changelog
+
+1.0.4 
+* Added catalog endpoint + new serializable type.
 
 1.0.3
 * Added example application which uses Razor and MVC.
