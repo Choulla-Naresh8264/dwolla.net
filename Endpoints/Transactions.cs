@@ -142,7 +142,7 @@ namespace Dwolla
             if (recurrence != null) data.Add("recurrence", recurrence);
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<int?>(PostSpecial("/transactions/schedule", data));
+            return DwollaParse<int?>(PostSpecial("/transactions/scheduled", data));
         }
     }
 }
