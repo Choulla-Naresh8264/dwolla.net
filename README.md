@@ -377,6 +377,32 @@ namespace Dwolla.SerializableTypes
         public int? TransactionId { get; set; }
         public int? DestinationTransactionId { get; set; }
     }
+
+    public class ScheduledTransaction
+    {
+        public string Id { get; set; }
+        public string ScheduledDate { get; set; }
+        public string ExpectedClearingDate { get; set; }
+        public string TransactionId { get; set; }
+        public double? Amount { get; set; }
+        public string FundingSource { get; set; }
+        public bool? AssumeCosts { get; set; }
+        public User Destination { get; set; }
+        public string Notes { get; set; }
+        public string Status { get; set; }
+        public string CreatedDate { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
+    }
+
+    public class ScheduledRecurrence
+    {
+        public string frequency { get; set; }
+        public string endDate { get; set; }
+        public string endAfter { get; set; }
+        public int? repeatEvery { get; set; }
+        public string onDays { get; set; }
+    }
+
 }
 ```
 
@@ -434,6 +460,7 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
  * `Info()`: Get information for transaction by ID.
  * `Refund()`: Refund a transaction.
  * `Stats()`: Get transaction statistics for current user.
+ * `Schedule()`: Schedule a transaction for a later date.
 
 ## Integration Testing
 
@@ -444,7 +471,8 @@ Travis-Ci build verification is planned when the tests are going to be migrated 
 ## Changelog
 
 1.0.4 
-* Added catalog endpoint + new serializable type.
+* Added OAuth catalog endpoint + new serializable type.
+* Added scheduled transaction endpoint + serializable types for recurrence and scheduled responses.
 
 1.0.3
 * Added example application which uses Razor and MVC.

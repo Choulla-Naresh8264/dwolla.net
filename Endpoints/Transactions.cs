@@ -113,5 +113,36 @@ namespace Dwolla
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
             return DwollaParse<TransactionStats>(Get("/transactions/stats", data));
         }
+
+        /// <summary>
+        ///     Schedule a payment to a Dwolla user
+        /// </summary>
+        /// <param name="destinationId">Destination Dwolla ID</param>
+        /// <param name="amount">Amount to send</param>
+        /// <param name="scheduleDate">Date on which to send funds</param>
+        /// <param name="fundsSource">Funding source ID to fund transaction</param>
+        /// <param name="recurrence">Details of recurring payment if desired</param>
+        /// <param name="aParams">Additional parameters</param>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <param name="altPin">Alternate pin</param>
+        /// <returns>Resulting transaction ID</returns>
+        public int? Schedule(string destinationId, double amount, string scheduleDate, string fundsSource, ScheduledRecurrence recurrence = null,
+            Dictionary<string, object> aParams = null, string altToken = null, int? altPin = null)
+        {
+            var data = new Dictionary<string, object>
+            {
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()},
+                {"destinationId", destinationId},
+                {"amount", amount.ToString()},
+                {"scheduleDate", scheduleDate},
+                {"fundsSource", fundsSource}
+            };
+
+            if (recurrence != null) data.Add("recurrence", recurrence);
+
+            if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
+            return DwollaParse<int?>(PostSpecial("/transactions/schedule", data));
+        }
     }
 }

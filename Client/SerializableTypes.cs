@@ -266,4 +266,30 @@ namespace Dwolla.SerializableTypes
         public int? TransactionId { get; set; }
         public int? DestinationTransactionId { get; set; }
     }
+
+    public class ScheduledTransaction
+    {
+        public string Id { get; set; }
+        public string ScheduledDate { get; set; }
+        public string ExpectedClearingDate { get; set; }
+        public string TransactionId { get; set; }
+        public double? Amount { get; set; }
+        public string FundingSource { get; set; }
+        public bool? AssumeCosts { get; set; }
+        public User Destination { get; set; }
+        public string Notes { get; set; }
+        public string Status { get; set; }
+        public string CreatedDate { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
+    }
+
+    public class ScheduledRecurrence
+    {
+        public string frequency { get; set; }
+        public string endDate { get; set; }
+        public string endAfter { get; set; }
+        public int? repeatEvery { get; set; }
+        public string onDays { get; set; }
+    }
+
 }

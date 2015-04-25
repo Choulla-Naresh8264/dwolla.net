@@ -6,6 +6,7 @@
     <title>dwolla.net</title>
     <authors>Dwolla Inc, David Stancu</authors>
     <projectUrl>https://github.com/Dwolla/dwolla.net</projectUrl>
+    <iconUrl>http://help.dwolla.com/customer/portal/attachments/173863</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>An officially supported WCF-based Dwolla API wrapper</description>
     <releaseNotes>Added MVC Example application</releaseNotes>
