@@ -125,8 +125,8 @@ namespace Dwolla
         /// <param name="aParams">Additional parameters</param>
         /// <param name="altToken">Alternate OAuth token</param>
         /// <param name="altPin">Alternate pin</param>
-        /// <returns>Resulting transaction ID</returns>
-        public int? Schedule(string destinationId, double amount, string scheduleDate, string fundsSource, ScheduledRecurrence recurrence = null,
+        /// <returns>ScheduledTransaction object</returns>
+        public ScheduledTransaction Schedule(string destinationId, double amount, string scheduleDate, string fundsSource, ScheduledRecurrence recurrence = null,
             Dictionary<string, object> aParams = null, string altToken = null, int? altPin = null)
         {
             var data = new Dictionary<string, object>
@@ -142,7 +142,7 @@ namespace Dwolla
             if (recurrence != null) data.Add("recurrence", recurrence);
 
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
-            return DwollaParse<int?>(PostSpecial("/transactions/scheduled", data));
+            return DwollaParse<ScheduledTransaction>(PostSpecial("/transactions/scheduled", data));
         }
     }
 }
