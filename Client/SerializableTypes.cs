@@ -292,4 +292,11 @@ namespace Dwolla.SerializableTypes
         public string onDays { get; set; }
     }
 
+    public class ScheduledTransactions
+    {
+        public int? Total { get; set; }
+        public int? Count { get; set; }
+        public List<ScheduledTransaction> Results { get; set; }
+    }
+
 }

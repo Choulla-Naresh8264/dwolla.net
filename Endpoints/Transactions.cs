@@ -144,5 +144,89 @@ namespace Dwolla
             if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
             return DwollaParse<ScheduledTransaction>(PostSpecial("/transactions/scheduled", data));
         }
+
+        /// <summary>
+        ///     Retrieves data about all scheduled transactions
+        /// </summary>
+        /// <param name="aParams">Additional parameters</param>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <returns>ScheduledTransactions object (plural, keep in mind)</returns>
+        public ScheduledTransactions GetScheduled(Dictionary<string, string> aParams = null, string altToken = null)
+        {
+            var data = new Dictionary<string, string>
+            {
+                {"oauth_token", altToken ?? C.dwolla_access_token}
+            };
+
+            if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
+            return DwollaParse<ScheduledTransactions>(Get("/transactions/scheduled", data));
+        }
+
+        /// <summary>
+        ///     Retrieves data about all scheduled transactions
+        /// </summary>
+        /// <param name="id">Scheduled transaction ID</param>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <returns>ScheduledTransactions object (plural, keep in mind)</returns>
+        public ScheduledTransaction GetScheduledById(string id, string altToken = null)
+        {
+            return DwollaParse<ScheduledTransaction>(Get("/transactions/scheduled/" + id, new Dictionary<string, string>
+            {
+                {"oauth_token", altToken ?? C.dwolla_access_token}
+            }));
+        }
+
+        /// <summary>
+        ///     Edit a previously made scheduled transaction. Pass in parameters
+        ///     that you wish to edit in aParams. The recurrence object cannot be 
+        ///     edited. 
+        /// </summary>
+        /// <param name="aParams">Additional parameters</param>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <param name="altPin">Alternate pin</param>
+        /// <returns>ScheduledTransaction object</returns>
+        public ScheduledTransaction EditScheduleById(string id, Dictionary<string, string> aParams = null, string altToken = null, int? altPin = null)
+        {
+            var data = new Dictionary<string, string>
+            {
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()}
+            };
+
+            if (aParams != null) data = aParams.Union(data).ToDictionary(k => k.Key, v => v.Value);
+            return DwollaParse<ScheduledTransaction>(Put("/transactions/scheduled/" + id, data));
+        }
+
+        /// <summary>
+        ///     Delete scheduled transaction by ID
+        /// </summary>
+        /// <param name="id">Target scheduled transaction</param>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <param name="altPin">Alternate PIN</param>
+        /// <returns>String with ID of deleted transaction</returns>
+        public string DeleteScheduledById(string id, string altToken = null, int? altPin = null)
+        {
+            return DwollaParse<string>(Delete("/transactions/scheduled/" + id, new Dictionary<string, string>
+            {
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()}
+            }));
+        }
+
+        /// <summary>
+        ///     Delete ALL scheduled transactions
+        /// </summary>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <param name="altPin">Alternate PIN</param>
+        /// <returns>List of strings with IDs of deleted transactions</returns>
+        public List<string> DeleteAllScheduled(string altToken = null, int? altPin = null)
+        {
+            return DwollaParse<List<string>>(Delete("/transactions/scheduled", new Dictionary<string, string>
+            {
+                {"oauth_token", altToken ?? C.dwolla_access_token},
+                {"pin", altPin.ToString() ?? C.dwolla_pin.ToString()}
+            }));
+        }
+
     }
 }
