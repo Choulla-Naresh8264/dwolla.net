@@ -412,6 +412,7 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
  * `GenAuthUrl()`: Generates OAuth permission link URL
  * `Get()`: Retrieves OAuth + Refresh token pair from Dwolla servers.
  * `Refresh()`: Retrieves OAuth + Refresh pair with refresh token.
+ * `Catalog()`: Retrieves all endpoints elligible for use with current OAuth token. 
 * `Requests()`:
  * `Create()`: Request money from user.
  * `Get()`: Lists all pending money requests.
