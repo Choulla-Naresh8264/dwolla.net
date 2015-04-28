@@ -136,5 +136,96 @@ namespace Dwolla
                 }
             }
         }
+
+        /// <summary>
+        ///     Synchronous PUT request wrapper around HttpClient
+        /// </summary>
+        /// <param name="endpoint">Dwolla API endpoint</param>
+        /// <param name="parameters">A Dictionary with the parameters</param>
+        /// <param name="altPostfix">Alternate REST postfix</param>
+        /// <returns>JSON-encoded string with API response</returns>
+        protected string Put(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage request = client.PutAsync(
+                        (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                        + (altPostfix ?? C.dwolla_default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
+                    return request.Content.ReadAsStringAsync().Result;
+                }
+                catch (Exception wtf)
+                {
+                    Console.WriteLine("dwolla.net: An exception has occurred while making a PUT request.");
+                    Console.WriteLine(wtf.ToString());
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     A variation of the PUT method wherein the only difference
+        ///     is that we post a Dictionary<string,object>. Used for MassPay 
+        ///     and off-site gateway checkouts. 
+        /// </summary>
+        /// <param name="endpoint">Dwolla API endpoint</param>
+        /// <param name="parameters">A Dictionary with the parameters</param>
+        /// <param name="altPostfix">Alternate REST postfix</param>
+        /// <returns>JSON-encoded string with API response</returns>
+        protected string PutSpecial(string endpoint, Dictionary<string, object> parameters, string altPostfix = null)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage request = client.PutAsync(
+                        (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                        + (altPostfix ?? C.dwolla_default_postfix) + endpoint, new StringContent(Jss.Serialize(parameters), Encoding.UTF8, "application/json")).Result;
+                    return request.Content.ReadAsStringAsync().Result;
+                }
+                catch (Exception wtf)
+                {
+                    Console.WriteLine("dwolla.net: An exception has occurred while making a PUT request.");
+                    Console.WriteLine(wtf.ToString());
+                    return null;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Synchronous DELETE request wrapper around HttpClient
+        /// </summary>
+        /// <param name="endpoint">Dwolla API endpoint</param>
+        /// <param name="parameters">A Dictionary with the parameters</param>
+        /// <param name="altPostfix">Alternate REST postfix</param>
+        /// <returns>JSON-encoded string with API response</returns>
+        protected string Delete(string endpoint, Dictionary<string, string> parameters, string altPostfix = null)
+        {
+            using (var client = new HttpClient())
+            {
+                var builder = new UriBuilder(
+                    (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
+                    + (altPostfix ?? C.dwolla_default_postfix) + endpoint);
+
+                NameValueCollection query = HttpUtility.ParseQueryString(builder.Query);
+
+                foreach (string k in parameters.Keys)
+                    query[k] = parameters[k];
+
+                builder.Query = query.ToString();
+
+                try
+                {
+                    return client.GetStringAsync(builder.Uri).Result;
+                }
+                catch (Exception wtf)
+                {
+                    Console.WriteLine("dwolla.net: An exception has occurred while making a DELETE request.");
+                    Console.WriteLine(wtf.ToString());
+                    return null;
+                }
+            }
+        }
     }
 }

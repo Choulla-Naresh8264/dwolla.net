@@ -166,6 +166,14 @@ namespace Dwolla.SerializableTypes
         public string token_type { get; set; }
     }
 
+    public class OAuthCatalog
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public string Response { get; set; }
+        public List<Dictionary<string, Dictionary<string, string>>> _links { get; set; }
+    }
+
     public class OAuthError
     {
         public string error { get; set; }
@@ -258,4 +266,37 @@ namespace Dwolla.SerializableTypes
         public int? TransactionId { get; set; }
         public int? DestinationTransactionId { get; set; }
     }
+
+    public class ScheduledTransaction
+    {
+        public string Id { get; set; }
+        public string ScheduledDate { get; set; }
+        public string ExpectedClearingDate { get; set; }
+        public string TransactionId { get; set; }
+        public double? Amount { get; set; }
+        public string FundingSource { get; set; }
+        public bool? AssumeCosts { get; set; }
+        public User Destination { get; set; }
+        public string Notes { get; set; }
+        public string Status { get; set; }
+        public string CreatedDate { get; set; }
+        public Dictionary<string, string> Metadata { get; set; }
+    }
+
+    public class ScheduledRecurrence
+    {
+        public string frequency { get; set; }
+        public string endDate { get; set; }
+        public string endAfter { get; set; }
+        public int? repeatEvery { get; set; }
+        public string onDays { get; set; }
+    }
+
+    public class ScheduledTransactions
+    {
+        public int? Total { get; set; }
+        public int? Count { get; set; }
+        public List<ScheduledTransaction> Results { get; set; }
+    }
+
 }

@@ -72,5 +72,20 @@ namespace Dwolla
             if (oar.access_token != null) return oar;
             throw new OAuthException(Jss.Deserialize<OAuthError>(response).error_description);
         }
+
+        /// <summary>
+        ///     Returns a "catalog" of endpoints that are available for use with the current/passed OAuth token.
+        /// </summary>
+        /// <param name="altToken">Alternate OAuth token</param>
+        /// <returns>OAuthCatalog object</returns>
+        public OAuthCatalog Catalog(string altToken = null)
+        {
+            var response = Get("/catalog", new Dictionary<string, string> { { "oauth_token", altToken ?? C.dwolla_access_token } });
+
+            var cat = Jss.Deserialize<OAuthCatalog>(response);
+            if (cat.Success) return cat;
+            throw new OAuthException(cat.Message);
+        }
+
     }
 }
