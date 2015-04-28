@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Send Successful";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Awesome, @ViewData["name"]!</h2>
+<p>You just sent money using Dwolla!</p>
+
+<br />
+
+<p>Your resulting <b>Transaction ID:</b> @ViewData["resulting_id"]</p>
+
+@Html.ActionLink("Log out", "Index") @Html.ActionLink("Send more money", "Send")
