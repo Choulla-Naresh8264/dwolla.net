@@ -7,7 +7,7 @@ An official .NET library for the Dwolla API based on the WCF HTTP client.
 
 ## Version
 
-1.0.4
+1.0.5
 
 ## Installation
 
@@ -469,6 +469,9 @@ Each endpoint class extends `Rest` located in `Rest.cs`.
 Travis-Ci build verification is planned when the tests are going to be migrated to a framework such as X-Test wihch does not require Microsoft Windows or Visual Studio. As of now, the maintainer runs MSTest to validate each build before pushing. 
 
 ## Changelog
+
+1.0.5
+* Added `verified_account` parameter to OAuth authorization URL function.
 
 1.0.4 
 * Added OAuth catalog endpoint + new serializable type.

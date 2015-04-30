@@ -18,13 +18,14 @@ namespace Dwolla
         ///     within the application settings
         /// </param>
         /// <returns>OAuth permissions page Uri</returns>
-        public Uri GenAuthUrl(string redirect = null, string scope = null)
+        public Uri GenAuthUrl(string redirect = null, string scope = null, bool verified_account = false)
         {
             var b = new UriBuilder(
                 (C.dwolla_sandbox ? C.dwolla_sandbox_host : C.dwolla_production_host)
                 + "oauth/v2/authenticate?client_id=" + HttpUtility.UrlEncode(C.dwolla_key)
                 + "&response_type=code&scope=" + (scope ?? C.dwolla_oauth_scope)
-                + (redirect == null ? "" : "&redirect_uri=" + HttpUtility.UrlEncode(redirect)));
+                + (redirect == null ? "" : "&redirect_uri=" + HttpUtility.UrlEncode(redirect))
+                + (verified_account ? "&verified_account=true" : ""));
             return b.Uri;
         }
 

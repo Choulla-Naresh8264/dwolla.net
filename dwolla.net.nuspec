@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>dwolla.net</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <title>dwolla.net</title>
     <authors>Dwolla Inc, David Stancu</authors>
     <projectUrl>https://github.com/Dwolla/dwolla.net</projectUrl>
