@@ -164,6 +164,8 @@ namespace Dwolla.SerializableTypes
         public string refresh_token { get; set; }
         public int? refresh_expires_in { get; set; }
         public string token_type { get; set; }
+        public string scope { get; set; }
+        public string account_id { get; set; }
     }
 
     public class OAuthCatalog

@@ -67,7 +67,7 @@ namespace Dwolla
                 {"client_secret", C.dwolla_secret},
                 {"grant_type", "refresh_token"},
                 {"refresh_token", refreshToken}
-            });
+            }, "/oauth/v2");
 
             var oar = Jss.Deserialize<OAuthResponse>(response);
             if (oar.access_token != null) return oar;
