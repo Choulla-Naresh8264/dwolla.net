@@ -1,9 +1,12 @@
 dwolla.net
 =========
 
-[![Join the chat at https://gitter.im/Dwolla/dwolla.net](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Dwolla/dwolla.net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 An official .NET library for the Dwolla API based on the WCF HTTP client.
+
+## Deprecation warning
+This repository is for an old version of our API and is no longer actively maintained. Please use our [new SDKs](https://developers.dwolla.com/pages/sdks.html).
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 ## Version
 
